@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "angular5-client"
+    "name": "angular5-admin-client"
   },
   "apps": [
     {
