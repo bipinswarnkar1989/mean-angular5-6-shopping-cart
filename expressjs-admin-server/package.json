@@ -1,0 +1,16 @@
+{
+  "name": "expressjs-admin-server",
+  "version": "1.0.0",
+  "description": "admin server for shopping cart",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "shopping",
+    "cart",
+    "admin"
+  ],
+  "author": "bipin swarnkar",
+  "license": "ISC"
+}
