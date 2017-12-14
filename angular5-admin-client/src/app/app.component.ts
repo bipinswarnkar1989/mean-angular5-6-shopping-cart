@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
 
 @Component({
   selector: 'app-root',
@@ -7,6 +9,10 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  @ViewChild('sidenav') sidenav: MatSidenavModule;
+  
+
   title = 'app';
   mode = new FormControl('side');
+
 }
