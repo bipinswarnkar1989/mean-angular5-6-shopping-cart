@@ -1,5 +1,6 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav [mode]="mode.value" [opened]="true">
+  <mat-sidenav #sidenav [mode]="mode.value" [opened]="navOpened" [fixedInViewport]="true" [fixedTopGap]="0"
+                 [fixedBottomGap]="0">
     <div style="cursor: pointer; font-size: 22px; color: rgb(255, 255, 255); line-height: 70px; font-weight: 300; background-color: #3f51b5; padding-left: 40px; height: 64px;border:1px solid white">MeanKart</div>
     <mat-nav-list>
       <a mat-list-item (click)="sidenav.close()" >
@@ -21,82 +22,8 @@
         <span mat-line>Questions</span>
         <span mat-line class="secondary">Questions</span>
       </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>home</mat-icon>
-        <span mat-line>Home</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>list</mat-icon>
-        <span mat-line>Categories</span>
-        <span mat-line class="secondary">Categories</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>bookmark</mat-icon>
-        <span mat-line>Tags</span>
-        <span mat-line class="secondary">Tags</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>question_answer</mat-icon>
-        <span mat-line>Questions</span>
-        <span mat-line class="secondary">Questions</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>home</mat-icon>
-        <span mat-line>Home</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>list</mat-icon>
-        <span mat-line>Categories</span>
-        <span mat-line class="secondary">Categories</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>bookmark</mat-icon>
-        <span mat-line>Tags</span>
-        <span mat-line class="secondary">Tags</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>question_answer</mat-icon>
-        <span mat-line>Questions</span>
-        <span mat-line class="secondary">Questions</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>home</mat-icon>
-        <span mat-line>Home</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>list</mat-icon>
-        <span mat-line>Categories</span>
-        <span mat-line class="secondary">Categories</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>bookmark</mat-icon>
-        <span mat-line>Tags</span>
-        <span mat-line class="secondary">Tags</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>question_answer</mat-icon>
-        <span mat-line>Questions</span>
-        <span mat-line class="secondary">Questions</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>home</mat-icon>
-        <span mat-line>Home</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>list</mat-icon>
-        <span mat-line>Categories</span>
-        <span mat-line class="secondary">Categories</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>bookmark</mat-icon>
-        <span mat-line>Tags</span>
-        <span mat-line class="secondary">Tags</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>question_answer</mat-icon>
-        <span mat-line>Questions</span>
-        <span mat-line class="secondary">Questions</span>
-      </a>
+
+
     </mat-nav-list>
   </mat-sidenav>
 
@@ -105,12 +32,14 @@
     <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
     <h1 class="example-app-name">Admin Panel App</h1>
   </mat-toolbar>
+  <div class="container">
     <p>
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </p>
     <img src="https://pbs.twimg.com/media/CT1aIHIUYAEZstR.jpg">
     <br>
       <img src="https://pbs.twimg.com/media/CT1aIHIUYAEZstR.jpg">
+  </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -15,11 +15,22 @@ html, body {
 }
 .mat-sidenav {
     min-width: 250px;
-    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     padding: 0;
     height: 104vh;
     overflow: scroll;
+}
+.mat-toolbar{
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  width: 100%  !important;
+}
+.mat-sidenav-content{
+  padding-top: 70px;
+}
+.container{
+  padding: 1px 10px 10px 10px;
 }
