@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {FormsModule} from '@angular/forms';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -38,11 +38,15 @@ import {
 
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+
+import { AppRoutingModule } from './app-routing/app-routing.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -79,6 +83,8 @@ import { AppComponent } from './app.component';
     MatToolbarModule,
     MatTooltipModule,
     MatStepperModule,
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

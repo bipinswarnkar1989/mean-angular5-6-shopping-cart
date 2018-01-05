@@ -34,3 +34,25 @@ html, body {
 .container{
   padding: 1px 10px 10px 10px;
 }
+
+.fullWidthInput{
+  width:100%;
+}
+.loginDiv{
+  padding: 10px;
+}
+@media only screen and (min-width: 768px) {
+    /* For desktop: */
+    .loginDiv{
+      width: 50%;
+      margin: 0 auto;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .loginDiv{
+      width: 95%;
+      margin: 0 auto;
+    }
+}

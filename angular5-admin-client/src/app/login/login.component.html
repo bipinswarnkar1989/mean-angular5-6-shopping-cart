@@ -1,0 +1,19 @@
+<div align="center" class="loginDiv">
+  <mat-card>
+  <h2>Admin Login</h2>
+  <form onsubmit="">
+    <mat-form-field class="fullWidthInput">
+      <mat-label>Email</mat-label>
+     <input matInput placeholder="Enter your email" [formControl]="email" required>
+     <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+   </mat-form-field>
+
+    <mat-form-field class="fullWidthInput">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" placeholder="Enter your password" [formControl]="password" required>
+      <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">SignIn</button>
+  </form>
+</mat-card>
+</div>

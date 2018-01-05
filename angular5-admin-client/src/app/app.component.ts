@@ -1,6 +1,7 @@
 import { Component,ViewChild,OnInit,HostListener } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormControl,Validators} from '@angular/forms';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -11,10 +12,11 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 export class AppComponent {
   @ViewChild('sidenav') sidenav: MatSidenavModule;
 
-
+  isLoggedIn:boolean = false;
   title = 'app';
   mode = new FormControl('side');
   navOpened:boolean = true;
+
   ngOnInit() {
     if (window.innerWidth < 768) {
       this.navOpened = false;
@@ -30,5 +32,6 @@ export class AppComponent {
            this.navOpened = true;
         }
     }
+
 
 }
