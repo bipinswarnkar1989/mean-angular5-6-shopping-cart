@@ -1,5 +1,5 @@
 "use strict";
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", { value: true });
 /*
   Main file of the server
   ./expressjs-admin-server/app.ts
@@ -38,7 +38,7 @@ var mongodb = mongoose.connect(mongodbURI);
 mongodb
     .then(function (db) {
     console.log("Connected to MongoDb on " + db.host + ":" + db.port);
-    user_server_route_1["default"](app);
+    user_server_route_1.default(app);
     app.get('/', function (req, res) {
         return res.end('Api working');
     });
@@ -49,6 +49,8 @@ mongodb
     app.listen(app.get('port'), function () {
         console.log("Mern Shopping Cart Admin server Listening on " + app.get('port'));
     });
-})["catch"](function (err) {
+})
+    .catch(function (err) {
     console.log(err);
 });
+//# sourceMappingURL=app.js.map

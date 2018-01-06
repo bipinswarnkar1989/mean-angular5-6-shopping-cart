@@ -4,7 +4,8 @@
   "description": "admin server for shopping cart",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": " tsc --watch & nodemon dist/app.js"
   },
   "keywords": [
     "shopping",
@@ -14,11 +15,17 @@
   "author": "bipin swarnkar",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
     "mongoose": "^5.0.0-rc2",
     "morgan": "^1.9.0",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@types/express": "^4.11.0",
+    "typescript": "^2.6.2"
   }
 }
