@@ -41,6 +41,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { ServicesModule } from './services/services.module';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
     MatTooltipModule,
     MatStepperModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ServicesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
