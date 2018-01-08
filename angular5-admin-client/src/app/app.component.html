@@ -1,7 +1,8 @@
-<mat-sidenav-container *ngIf="!isLoggedIn" class="example-container">
-  <mat-sidenav #sidenav [mode]="mode.value" [opened]="navOpened && isLoggedIn" [fixedInViewport]="true" [fixedTopGap]="0"
+<mat-sidenav-container  class="example-container">
+  <mat-sidenav #sidenav [mode]="mode.value" [opened]="navOpened && auth.isLoggedIn" [fixedInViewport]="true" [fixedTopGap]="0"
                  [fixedBottomGap]="0">
-    <div style="cursor: pointer; font-size: 22px; color: rgb(255, 255, 255); line-height: 70px; font-weight: 300; background-color: #3f51b5; padding-left: 40px; height: 64px;border:1px solid white">MeanKart</div>
+    <!-- <div style="cursor: pointer; font-size: 22px; color: rgb(255, 255, 255); line-height: 70px; font-weight: 300; background-color: #3f51b5; padding-left: 40px; height: 64px;border:1px solid white">MeanKart</div> -->
+    <div align="center" *ngIf="auth.currentUser.email" style="cursor: pointer; font-size: 15px; color: rgb(255, 255, 255); font-weight: 100; background-color: #3f51b5; height:15%;border:1px solid white"><h4>Welcome Admin</h4> <h3>{{auth.currentUser.email}}</h3></div>
     <mat-nav-list>
       <a mat-list-item (click)="sidenav.close()" >
         <mat-icon mat-list-icon>home</mat-icon>
@@ -29,8 +30,9 @@
 
   <mat-sidenav-content>
   <mat-toolbar color="primary" class="example-toolbar">
-    <button *ngIf="isLoggedIn" mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+    <button *ngIf="auth.isLoggedIn" mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
     <div style="cursor: pointer; font-size: 22px; color: rgb(255, 255, 255);font-weight: 300; background-color: #3f51b5; margin-left: 40px;">MeanKart</div>
+    
   </mat-toolbar>
   <div class="container">
     <router-outlet></router-outlet>

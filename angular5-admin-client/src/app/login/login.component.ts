@@ -13,7 +13,8 @@ export class LoginComponent implements OnInit {
   loginForm:FormGroup;
   constructor(
     private fb:FormBuilder,
-    private auth:AuthService
+    private auth:AuthService,
+    private router:Router,
   ) { }
 
   ngOnInit() {
@@ -22,13 +23,27 @@ export class LoginComponent implements OnInit {
 
   createLoginForm(){
     this.loginForm = this.fb.group({
-      email:['', Validators.email],
+      email:['', [Validators.email,Validators.email,Validators.minLength(3)]],
       password:['', Validators.required]
     });
   }
 
   login(){
-    this.auth.login(this.loginForm.value)
+    this.auth.login(this.loginForm.value).subscribe(res => {
+        if(res.success){
+          this.auth.useToken(res.token);
+          this.router.navigate(['/dash']);
+        }
+        else if(!res.success && res.message){
+          alert(res.message)
+        }
+       else{
+         alert('Something went wrong!');
+       }
+    },
+    err => {
+        console.log('Something went wrong!');
+      })
   }
 
   getErrorMessage(){

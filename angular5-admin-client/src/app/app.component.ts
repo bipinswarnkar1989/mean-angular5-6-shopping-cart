@@ -2,7 +2,7 @@ import { Component,ViewChild,OnInit,HostListener } from '@angular/core';
 import {FormControl,Validators} from '@angular/forms';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { ActivatedRoute } from '@angular/router';
-
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +12,11 @@ import { ActivatedRoute } from '@angular/router';
 export class AppComponent {
   @ViewChild('sidenav') sidenav: MatSidenavModule;
 
-  isLoggedIn:boolean = false;
   title = 'app';
   mode = new FormControl('side');
   navOpened:boolean = true;
+
+  constructor(private auth: AuthService) {}
 
   ngOnInit() {
     if (window.innerWidth < 768) {
