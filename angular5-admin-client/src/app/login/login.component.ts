@@ -18,7 +18,13 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    if(this.auth.isLoggedIn){
+      this.router.navigate(['/dash']);
+    }
     this.createLoginForm();
+    if(this.auth.checkAuthentication()){
+      this.router.navigate(['/dash']);
+    }
   }
 
   createLoginForm(){
@@ -31,7 +37,7 @@ export class LoginComponent implements OnInit {
   login(){
     this.auth.login(this.loginForm.value).subscribe(res => {
         if(res.success){
-          this.auth.useToken(res.token);
+          this.auth.useToken(res.token);alert(JSON.stringify(res.token))
           this.router.navigate(['/dash']);
         }
         else if(!res.success && res.message){

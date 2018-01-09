@@ -9,6 +9,8 @@ const setUserRoutes = (app) => {
   router.route('/login').post(userCtrl.login);
   router.route('/user')
      .post(userCtrl.register);
+  router.route('/validateToken')
+    .get(userCtrl.validateToken);
 
   app.use('/api/user', router);
 }

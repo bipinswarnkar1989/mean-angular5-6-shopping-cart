@@ -1,12 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 // ./expressjs-admin-server/controllers/user.server.controller.ts
 var jwt = require("jsonwebtoken");
 var user_server_model_1 = require("../models/user.server.model");
 var userController = /** @class */ (function () {
     function userController() {
         var _this = this;
-        this.model = user_server_model_1.default;
+        this.model = user_server_model_1["default"];
         this.jwt = jwt;
         this.generateToken = function (user) {
             var u = {
@@ -94,5 +94,4 @@ var userController = /** @class */ (function () {
     }
     return userController;
 }());
-exports.default = userController;
-//# sourceMappingURL=user.server.controller.js.map
+exports["default"] = userController;

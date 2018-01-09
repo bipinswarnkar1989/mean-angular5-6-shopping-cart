@@ -32,7 +32,19 @@
   <mat-toolbar color="primary" class="example-toolbar">
     <button *ngIf="auth.isLoggedIn" mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
     <div style="cursor: pointer; font-size: 22px; color: rgb(255, 255, 255);font-weight: 300; background-color: #3f51b5; margin-left: 40px;">MeanKart</div>
-    
+
+<!-- This fills the remaining space of the current row -->
+<span style="flex: 1 1 auto;" class="example-fill-remaining-space"></span>
+      <mat-menu #appMenu="matMenu" yPosition="below" [overlapTrigger]="false">
+  <button mat-menu-item> Settings </button>
+  <button routerLink="/dash" mat-menu-item> Help </button>
+  <button (click)="auth.logout()" mat-menu-item> Logout </button>
+</mat-menu>
+
+<button *ngIf="auth.isLoggedIn"  mat-icon-button [matMenuTriggerFor]="appMenu" >
+  <mat-icon>more_vert</mat-icon>
+</button>
+
   </mat-toolbar>
   <div class="container">
     <router-outlet></router-outlet>

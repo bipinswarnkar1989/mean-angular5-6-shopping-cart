@@ -43,12 +43,14 @@ import { LoginComponent } from './login/login.component';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ServicesModule } from './services/services.module';
+import { DashComponent } from './dash/dash.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    DashComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +90,8 @@ import { ServicesModule } from './services/services.module';
     ReactiveFormsModule,
     AppRoutingModule,
     ServicesModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -74,4 +74,23 @@ export default class userController{
       })
    }
     }
+
+  validateToken = (req,res,next) => {
+    console.log('validateToken: '+JSON.stringify(req.headers['authorization']));
+    let token = req.headers['authorization'];
+    if(!token){
+      return false;
+    }
+    this.jwt.verify(token, process.env.SECRET_TOKEN, (err,user) => {
+      if(err){
+        console.log(err);
+        return res.send(false);
+      } else {
+        console.log('Authenticated Successfully')
+        return res.send(true);
+      }
+    })
+  }
+
+
 }
