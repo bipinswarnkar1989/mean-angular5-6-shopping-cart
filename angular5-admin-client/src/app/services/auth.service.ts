@@ -3,7 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { JwtHelper } from 'angular2-jwt';
 import { User } from '../models/user.model';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 
 
 @Injectable()
@@ -14,10 +14,11 @@ export class AuthService {
   jwtHelper: JwtHelper = new JwtHelper();
   currentUser:User = new User();
   httpHeaders:HttpHeaders = new HttpHeaders();
-  token:any = localStorage.getItem('userToken') || null;
+  token:any;
   constructor(
     private http:HttpClient,
     private router:Router,
+    private route:ActivatedRoute
   ) { }
 
   login(credentials):Observable<any>{
@@ -26,6 +27,7 @@ export class AuthService {
 
   useToken(token){
     localStorage.setItem('userToken',token);
+    this.token = token;
     const user = this.decodeUserfromToken(token);
     this.setCurrentUser(user);
   }
@@ -46,6 +48,8 @@ export class AuthService {
     localStorage.removeItem('userToken');
     this.isLoggedIn = false;
     this.isAdmin = false;
+    this.currentUser._id = null;
+    this.currentUser.email = null;
     this.router.navigate(['/login']);
   }
 
@@ -63,19 +67,35 @@ export class AuthService {
     this.setCurrentUser(user);
   }
 
-  checkAuthentication(){
-    if(this.token){
+  checkDashAuthentication(){
+    let token = localStorage.getItem('userToken');
+    if(!this.isLoggedIn && token !== null && token){
       this.validateToken().subscribe(res => {
         if(res) {
           this.setTokenAfterValidation();
-          return res;
+          return true;
         }
         else{
-          return false
+               this.router.navigate(['/login']);
+               return false;
         }
       })
-    }else{
-      return false;
+    }
+    else if(!this.isLoggedIn && token === null || !token){
+           this.router.navigate(['/login']);
+           return false;
+    }
+  }
+
+  checkLoginAuthentication(){
+    let token = localStorage.getItem('userToken');
+    if(token !== null && token){
+      this.validateToken().subscribe(res => {
+        if(res) {
+          this.setTokenAfterValidation();
+          this.router.navigate(['/dash']);
+        }
+      })
     }
   }
 

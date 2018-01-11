@@ -11,16 +11,9 @@ export class LoggedInGuardService implements CanActivate {
     private router:Router
   ) { }
 
-  canActivate(
-    route:ActivatedRouteSnapshot,
-    state:RouterStateSnapshot
-  ):Observable<boolean> | boolean{
+  canActivate(){
     console.log('LoggedInGuardService Working');
-    //this.auth.checkAuthentication();
-    if(!this.auth.checkAuthentication()){
-     this.router.navigate(['/login']);
-    }
-    return this.auth.checkAuthentication();
+    return this.auth.isLoggedIn;
   }
 
 }

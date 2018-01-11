@@ -9,7 +9,7 @@ import { LoggedInGuardService } from '../services/logged-in-guard.service';
 const appRoutes:Routes = [
   { path:'', redirectTo:'/login', pathMatch:'full' },
   { path:'login', component:LoginComponent },
-  { path:'dash', component:DashComponent, canActivate:[LoggedInGuardService] },
+  { path:'dash', component:DashComponent },
 ]
 
 @NgModule({

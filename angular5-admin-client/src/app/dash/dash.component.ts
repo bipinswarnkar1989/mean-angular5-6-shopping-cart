@@ -15,7 +15,7 @@ export class DashComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-     
+    this.auth.checkDashAuthentication();
   }
 
 }
