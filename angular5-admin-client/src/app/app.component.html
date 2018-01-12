@@ -4,26 +4,101 @@
     <!-- <div style="cursor: pointer; font-size: 22px; color: rgb(255, 255, 255); line-height: 70px; font-weight: 300; background-color: #3f51b5; padding-left: 40px; height: 64px;border:1px solid white">MeanKart</div> -->
     <div align="center" *ngIf="auth.currentUser.email" style="cursor: pointer; font-size: 15px; color: rgb(255, 255, 255); font-weight: 100; background-color: #3f51b5; height:15%;border:1px solid white"><h4>Welcome Admin</h4> <h3>{{auth.currentUser.email}}</h3></div>
     <mat-nav-list>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>home</mat-icon>
-        <span mat-line>Home</span>
+      <a  mat-list-item (click)="sidenav.close()" >
+        <mat-icon mat-list-icon>dashboard</mat-icon>
+        <span mat-line>Dashboard</span>
       </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>list</mat-icon>
-        <span mat-line>Categories</span>
-        <span mat-line class="secondary">Categories</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>bookmark</mat-icon>
-        <span mat-line>Tags</span>
-        <span mat-line class="secondary">Tags</span>
-      </a>
-      <a mat-list-item (click)="sidenav.close()" >
-        <mat-icon mat-list-icon>question_answer</mat-icon>
-        <span mat-line>Questions</span>
-        <span mat-line class="secondary">Questions</span>
-      </a>
+      <mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header class="menu-mat-expansion-panel-header">
+      <mat-panel-title>
+        <a mat-list-item >
+          <mat-icon mat-list-icon>list</mat-icon>
+          <span mat-line>Catalog</span>
+        </a>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <a class="submenu" mat-list-item >
+      <mat-icon mat-list-icon>arrow_forward</mat-icon>
+      <span mat-line>Categories</span>
+    </a>
+    <a mat-list-item (click)="sidenav.close()" >
+      <mat-icon mat-list-icon>arrow_forward</mat-icon>
+      <span mat-line>Products</span>
+    </a>
+  </mat-expansion-panel>
+</mat-accordion>
 
+<!-- Sales Acccordion -->
+<mat-accordion>
+<mat-expansion-panel>
+<mat-expansion-panel-header class="menu-mat-expansion-panel-header">
+<mat-panel-title>
+  <a mat-list-item >
+    <mat-icon mat-list-icon>local_grocery_store</mat-icon>
+    <span mat-line>Sales</span>
+  </a>
+</mat-panel-title>
+</mat-expansion-panel-header>
+<a class="submenu" mat-list-item >
+<mat-icon mat-list-icon>arrow_forward</mat-icon>
+<span mat-line>Orders</span>
+</a>
+<a mat-list-item (click)="sidenav.close()" >
+<mat-icon mat-list-icon>arrow_forward</mat-icon>
+<span mat-line>Recurring Profiles</span>
+</a>
+<a mat-list-item (click)="sidenav.close()" >
+<mat-icon mat-list-icon>arrow_forward</mat-icon>
+<span mat-line>Returns</span>
+</a>
+</mat-expansion-panel>
+</mat-accordion>
+
+<!-- Customers Acccordion -->
+<mat-accordion>
+<mat-expansion-panel>
+<mat-expansion-panel-header class="menu-mat-expansion-panel-header">
+<mat-panel-title>
+  <a mat-list-item >
+    <mat-icon mat-list-icon>supervisor_account</mat-icon>
+    <span mat-line>Customers</span>
+  </a>
+</mat-panel-title>
+</mat-expansion-panel-header>
+<a class="submenu" mat-list-item >
+<mat-icon mat-list-icon>arrow_forward</mat-icon>
+<span mat-line>Customers</span>
+</a>
+<a mat-list-item (click)="sidenav.close()" >
+<mat-icon mat-list-icon>arrow_forward</mat-icon>
+<span mat-line>Customer Fields</span>
+</a>
+<a mat-list-item (click)="sidenav.close()" >
+<mat-icon mat-list-icon>arrow_forward</mat-icon>
+<span mat-line>Returns</span>
+</a>
+</mat-expansion-panel>
+</mat-accordion>
+      <mat-card class="menu">
+        <a  mat-list-item (click)="sidenav.close()" >
+          <mat-icon mat-list-icon>question_answer</mat-icon>
+          <span mat-line>Reports</span>
+        </a>
+      </mat-card>
+      <mat-card class="menu">
+      <a  mat-list-item (click)="sidenav.close()" >
+        <mat-icon mat-list-icon>account_circle</mat-icon>
+        <span mat-line>My Profile</span>
+        <!-- <span mat-line class="secondary">Tags</span> -->
+      </a>
+    </mat-card>
+    <mat-card class="menu">
+      <a mat-list-item (click)="sidenav.close()" >
+        <mat-icon mat-list-icon>power_settings_new</mat-icon>
+        <span mat-line>Logout</span>
+      </a>
+</mat-card>
 
     </mat-nav-list>
   </mat-sidenav>

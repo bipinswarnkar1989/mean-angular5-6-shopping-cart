@@ -1,0 +1,14 @@
+.submenu{
+  font-size: 14px;
+  font-weight: normal;
+}
+.mat-expansion-panel{
+  padding:0;
+}
+.menu-mat-expansion-panel-header{
+  padding-left: 0 !important;
+}
+
+.menu{
+  padding: 0 !important;
+}
