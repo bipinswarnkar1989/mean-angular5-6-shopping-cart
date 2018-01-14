@@ -44,13 +44,15 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ServicesModule } from './services/services.module';
 import { DashComponent } from './dash/dash.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashComponent
+    DashComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

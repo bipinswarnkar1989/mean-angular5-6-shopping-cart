@@ -1,0 +1,21 @@
+.categoriesDiv{
+  text-align: center;
+}
+
+.catgr_table_div {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.mat-table {
+  overflow: visible;
+}
+
+.mat-column-select {
+  overflow: visible;
+}
+
+.mat-paginator{
+
+}

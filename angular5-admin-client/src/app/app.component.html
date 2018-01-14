@@ -18,7 +18,7 @@
         </a>
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <a class="submenu" mat-list-item >
+    <a routerLink="/categories" class="submenu" mat-list-item >
       <mat-icon mat-list-icon>arrow_forward</mat-icon>
       <span mat-line>Categories</span>
     </a>
@@ -94,7 +94,7 @@
       </a>
     </mat-card>
     <mat-card class="menu">
-      <a mat-list-item (click)="sidenav.close()" >
+      <a mat-list-item (click)="auth.logout()" >
         <mat-icon mat-list-icon>power_settings_new</mat-icon>
         <span mat-line>Logout</span>
       </a>

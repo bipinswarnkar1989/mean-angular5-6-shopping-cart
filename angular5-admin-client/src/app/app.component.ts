@@ -22,6 +22,7 @@ export class AppComponent {
     if (window.innerWidth < 768) {
       this.navOpened = false;
     }
+    this.auth.checkDashAuthentication();
   }
 
   @HostListener('window:resize', ['$event'])
