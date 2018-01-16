@@ -10,6 +10,7 @@ import * as dotenv from 'dotenv';
 import * as mongoose from 'mongoose';
 
 import setUserRoutes from './routes/user.server.route';
+import setCategoryRoutes from './routes/category.server.route';
 
 const app = express();
 dotenv.load({ path: '.env' });
@@ -42,6 +43,7 @@ mongodb
 .then(db => {
   console.log(`Connected to MongoDb on ${db.host}:${db.port}`);
   setUserRoutes(app);
+  setCategoryRoutes(app);
 
   app.get('/', (req,res) => {
     return res.end('Api working');
