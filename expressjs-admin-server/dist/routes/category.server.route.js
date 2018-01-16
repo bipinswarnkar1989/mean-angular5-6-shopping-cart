@@ -13,7 +13,7 @@ var setCategoryRoutes = function (app) {
         .get(categoryCtrl.fetchCategory);
     router.route('/category/:id')
         .get(categoryCtrl.getCategory)
-        .delete(categoryCtrl.getCategory);
+        .delete(categoryCtrl.deleteCategory);
     app.use('/api/category', router);
 };
 exports.default = setCategoryRoutes;
