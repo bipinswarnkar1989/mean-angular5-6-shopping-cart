@@ -89,6 +89,24 @@ var categoryController = /** @class */ (function () {
                 });
             }
         };
+        this.searchCategory = function (req, res) {
+            console.log('searchCategory: ' + JSON.stringify(req.params));
+            if (req.params.q) {
+                var searchKey = '/.*' + req.params.q + '.*/i';
+                var regex = { $regex: eval(searchKey) };
+                category_server_model_1.default.find({ $or: [{ name: regex }, { desciption: regex }] }).exec(function (err, catgr) {
+                    if (err) {
+                        return res.json({ success: false, message: 'Something going wrong', err: err });
+                    }
+                    else if (!catgr) {
+                        return res.json({ success: false, message: 'Category Not Found!' });
+                    }
+                    else {
+                        return res.json({ success: true, message: 'Category Fetched Successfully', catgr: catgr });
+                    }
+                });
+            }
+        };
     }
     return categoryController;
 }());

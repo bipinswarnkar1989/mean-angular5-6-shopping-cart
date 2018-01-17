@@ -8,6 +8,10 @@ const setCategoryRoutes = (app) => {
   router.route('/category')
       .post(categoryCtrl.createCategory)
       .put(categoryCtrl.editCategory);
+
+  router.route('/category/search/:q')
+      .get(categoryCtrl.searchCategory);
+
   router.route('/category/:page/:limit')
       .get(categoryCtrl.fetchCategory);
 

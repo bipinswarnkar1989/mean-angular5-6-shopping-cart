@@ -91,4 +91,23 @@ export default class categoryController{
       })
     }
   }
+
+  searchCategory = (req,res) => {
+    console.log('searchCategory: '+ JSON.stringify(req.params));
+    if(req.params.q){
+      let searchKey = '/.*'+req.params.q+'.*/i';
+      let regex = {$regex: eval(searchKey)};
+      Category.find({$or:[{name:regex},{desciption:regex}]}).exec((err,catgr) => {
+        if(err){
+          return res.json({success:false,message:'Something going wrong',err});
+        }
+        else if(!catgr){
+          return res.json({success:false,message:'Category Not Found!'});
+        }
+        else{
+          return res.json({success:true,message:'Category Fetched Successfully',catgr});
+        }
+      })
+    }
+  }
 }
