@@ -3,24 +3,48 @@ import { AuthService } from '../services/auth.service';
 import {MatTableDataSource} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
 
+import { Category } from '../models/category.model';
+import { CategoryService } from '../services/category.service';
+
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-
+  Category = new Category();
+  categories:Category[] = [];
+  displayedColumns = ['select', 'id', 'name', 'desciption'];
+  dataSource = new MatTableDataSource<Category>(this.categories);
+  selection = new SelectionModel<Category>(true, []);
   constructor(
     private auth:AuthService,
+    private ctgrService:CategoryService
   ) { }
 
   ngOnInit() {
-
+    this.getCategory();
   }
 
-  displayedColumns = ['select', 'position', 'name', 'weight', 'symbol'];
- dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
- selection = new SelectionModel<Element>(true, []);
+  getCategory(){
+    this.ctgrService.getCategories().subscribe(
+      data => {
+        this.categories = data['catgr'];
+        this.dataSource = new MatTableDataSource<Category>(this.categories);
+      },
+      error => console.log(error)
+    )
+  }
+
+  searchCatgr(searchValue: string){
+    
+  }
+
+  applyFilter(filterValue: string) {
+      filterValue = filterValue.trim(); // Remove whitespace
+      filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+      this.dataSource.filter = filterValue;
+    }
 
  /** Whether the number of selected elements matches the total number of rows. */
  isAllSelected() {

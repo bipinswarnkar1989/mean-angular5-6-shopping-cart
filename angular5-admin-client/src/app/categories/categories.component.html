@@ -2,6 +2,23 @@
 <div class="categoriesDiv">
 <h2>Categories</h2>
 <div class="catgr_table_div mat-elevation-z8">
+  <mat-grid-list cols="2" rowHeight="70px">
+  <mat-grid-tile>
+    <div class="search-form">
+        <mat-form-field floatLabel="auto">
+          <input matInput (keyup)="searchCatgr($event.target.value)" placeholder="Search database">
+        </mat-form-field>
+      </div>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div class="filter-form">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+      </div>
+  </mat-grid-tile>
+</mat-grid-list>
+
   <mat-table #table [dataSource]="dataSource">
 
     <!-- Checkbox Column -->
@@ -20,10 +37,10 @@
       </mat-cell>
     </ng-container>
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
@@ -32,17 +49,12 @@
       <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
     </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+    <!-- Description Column -->
+    <ng-container matColumnDef="desciption">
+      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.desciption}} </mat-cell>
     </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-    </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"
