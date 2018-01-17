@@ -11,7 +11,7 @@ const appRoutes:Routes = [
   { path:'', redirectTo:'/login', pathMatch:'full' },
   { path:'login', component:LoginComponent },
   { path:'dash', component:DashComponent },
-  { path:'categories', component:CategoriesComponent }
+  { path:'categories/:page/:limit', component:CategoriesComponent }
 ]
 
 @NgModule({

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import {MatTableDataSource} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
+import { Router,ActivatedRoute } from '@angular/router';
 
 import { Category } from '../models/category.model';
 import { CategoryService } from '../services/category.service';
@@ -19,15 +20,16 @@ export class CategoriesComponent implements OnInit {
   selection = new SelectionModel<Category>(true, []);
   constructor(
     private auth:AuthService,
-    private ctgrService:CategoryService
+    private ctgrService:CategoryService,
+    private route:ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.getCategory();
+    this.route.params.subscribe(params => this.getCategory(params));
   }
 
-  getCategory(){
-    this.ctgrService.getCategories().subscribe(
+  getCategory(params){
+    this.ctgrService.getCategories(params).subscribe(
       data => {
         this.categories = data['catgr'];
         this.dataSource = new MatTableDataSource<Category>(this.categories);
@@ -37,7 +39,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   searchCatgr(searchValue: string){
-    
+
   }
 
   applyFilter(filterValue: string) {
