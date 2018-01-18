@@ -3,6 +3,11 @@ import { AuthService } from '../services/auth.service';
 import {MatTableDataSource} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
 import { Router,ActivatedRoute } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/do';
 
 import { Category } from '../models/category.model';
 import { CategoryService } from '../services/category.service';
@@ -18,6 +23,8 @@ export class CategoriesComponent implements OnInit {
   displayedColumns = ['select', 'id', 'name', 'desciption'];
   dataSource = new MatTableDataSource<Category>(this.categories);
   selection = new SelectionModel<Category>(true, []);
+  searchCatgrField:FormControl;
+  loading:boolean = false;
   constructor(
     private auth:AuthService,
     private ctgrService:CategoryService,
@@ -26,6 +33,20 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => this.getCategory(params));
+    this.searchCatgrField = new FormControl();
+    this.searchCatgrField.valueChanges
+      .debounceTime(400)
+      .distinctUntilChanged()
+      .do( () => this.loading = true)
+      .switchMap(term => this.searchCatgr(term))
+      .do( () => this.loading = false)
+      .subscribe(
+        data => {
+          this.categories = data['catgr'];
+          this.dataSource = new MatTableDataSource<Category>(this.categories);
+        },
+        error => console.log(error)
+      );
   }
 
   getCategory(params){
@@ -39,7 +60,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   searchCatgr(searchValue: string){
-
+    return this.ctgrService.searchCategory(searchValue);
   }
 
   applyFilter(filterValue: string) {

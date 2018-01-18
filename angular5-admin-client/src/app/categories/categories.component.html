@@ -6,7 +6,7 @@
   <mat-grid-tile>
     <div class="search-form">
         <mat-form-field floatLabel="auto">
-          <input matInput (keyup)="searchCatgr($event.target.value)" placeholder="Search database">
+          <input matInput [formControl]="searchCatgrField" placeholder="Search database">
         </mat-form-field>
       </div>
   </mat-grid-tile>

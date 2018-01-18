@@ -19,4 +19,10 @@ export class CategoryService {
       headers:this.httpHeaders.set('authorization', this.token)
     })
   }
+  
+  searchCategory(q):Observable<Category[]>{
+    return this.http.get<Category[]>(`${this.apiUrl}/category/search/${q}`,{
+      headers:this.httpHeaders.set('authorization', this.token)
+    })
+  }
 }
