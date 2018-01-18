@@ -25,6 +25,7 @@ export class CategoriesComponent implements OnInit {
   selection = new SelectionModel<Category>(true, []);
   searchCatgrField:FormControl;
   loading:boolean = false;
+  routeParams = this.route.params['_value'];
   constructor(
     private auth:AuthService,
     private ctgrService:CategoryService,
@@ -38,7 +39,13 @@ export class CategoriesComponent implements OnInit {
       .debounceTime(400)
       .distinctUntilChanged()
       .do( () => this.loading = true)
-      .switchMap(term => this.searchCatgr(term))
+      .switchMap(term => {
+        if(term.length > 0){ return this.searchCatgr(term)}
+      else{
+         return this.ctgrService.getCategories(this.routeParams);
+      }
+    }
+    )
       .do( () => this.loading = false)
       .subscribe(
         data => {
