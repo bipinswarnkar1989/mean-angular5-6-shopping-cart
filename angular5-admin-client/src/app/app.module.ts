@@ -45,6 +45,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ServicesModule } from './services/services.module';
 import { DashComponent } from './dash/dash.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { AddcategoryComponent } from './addcategory/addcategory.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { CategoriesComponent } from './categories/categories.component';
     AppComponent,
     LoginComponent,
     DashComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    AddcategoryComponent
   ],
   imports: [
     BrowserModule,
