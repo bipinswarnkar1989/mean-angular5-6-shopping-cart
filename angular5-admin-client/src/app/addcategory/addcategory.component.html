@@ -1,3 +1,44 @@
-<p>
-  addcategory works!
-</p>
+<div class="main_content">
+<div class="addCategoryDiv">
+  <mat-card>
+     <mat-card-title>Add Category</mat-card-title>
+       <mat-card-content>
+         <mat-tab-group>
+  <mat-tab label="General">
+    <mat-form-field class="form-field">
+ <input matInput type="text" placeholder="Category Name" [(ngModel)]="value"/>
+ <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+ <mat-icon>close</mat-icon>
+ </button>
+</mat-form-field>
+<mat-form-field class="form-field">
+<textarea matInput placeholder="Description"></textarea>
+<button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+<mat-icon>close</mat-icon>
+</button>
+</mat-form-field>
+<mat-form-field class="form-field">
+<input matInput type="text" placeholder="Meta Tag Title" [(ngModel)]="value"/>
+<button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+<mat-icon>close</mat-icon>
+</button>
+</mat-form-field>
+<mat-form-field class="form-field">
+<textarea matInput placeholder="Meta Tag Description"></textarea>
+<button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+<mat-icon>close</mat-icon>
+</button>
+</mat-form-field>
+<mat-form-field class="form-field">
+<textarea matInput placeholder="Meta Tag Keywords"></textarea>
+<button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+<mat-icon>close</mat-icon>
+</button>
+</mat-form-field>
+  </mat-tab>
+  <mat-tab label="Data">Content 2</mat-tab>
+</mat-tab-group>
+       </mat-card-content>
+  </mat-card>
+</div>
+</div>
