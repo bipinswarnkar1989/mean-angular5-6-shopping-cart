@@ -46,7 +46,8 @@ export class AddcategoryComponent implements OnInit ,OnChanges {
   saveCategory(){
     this.shared.isLoading = true;
     const data = new FormData();
-    let file = document.getElementById('catgr_data_file').files[0];
+    let f = <HTMLInputElement>document.getElementById('catgr_data_file');
+    let file = f.files[0];
     let obj = this.catgrFormGeneral.value;
     for(let property in obj){
       data.append(property, obj[property]);
