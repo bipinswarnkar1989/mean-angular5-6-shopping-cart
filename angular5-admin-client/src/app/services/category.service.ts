@@ -3,6 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Category } from '../models/category.model';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class CategoryService {
@@ -26,8 +27,8 @@ export class CategoryService {
     })
   }
 
-  addCategory(c):Observable<Response>{
-    return this.http.post<Response>(`${this.apiUrl}/category`, c, {
+  addCategory(c):Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/category`, c, {
       headers:this.httpHeaders.set('authorization', this.token)
     })
   }

@@ -3,6 +3,7 @@ import {FormControl,Validators} from '@angular/forms';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { SharedService } from './services/shared.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,10 @@ export class AppComponent {
   mode = new FormControl('side');
   navOpened:boolean = true;
 
-  constructor(private auth: AuthService) {}
+  constructor(
+    private auth: AuthService,
+    private shared: SharedService
+  ) {}
 
   ngOnInit() {
     if (window.innerWidth < 768) {

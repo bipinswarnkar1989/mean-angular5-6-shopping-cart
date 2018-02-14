@@ -122,6 +122,7 @@
 
   </mat-toolbar>
   <div class="container">
+    <mat-progress-bar *ngIf="shared.isLoading" class="progressBar" mode="buffer"></mat-progress-bar>
     <router-outlet></router-outlet>
   </div>
   </mat-sidenav-content>

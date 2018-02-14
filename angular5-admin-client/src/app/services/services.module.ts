@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from './auth.service';
 import { LoggedInGuardService } from './logged-in-guard.service';
 import { CategoryService } from './category.service';
+import { SharedService } from './shared.service';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { CategoryService } from './category.service';
   providers: [
     AuthService,
     LoggedInGuardService,
-    CategoryService
+    CategoryService,
+    SharedService
   ],
   declarations: []
 })

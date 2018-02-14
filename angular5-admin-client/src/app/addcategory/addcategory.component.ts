@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { Category } from '../models/category.model';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CategoryService } from '../services/category.service';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-addcategory',
@@ -11,11 +12,12 @@ import { CategoryService } from '../services/category.service';
 export class AddcategoryComponent implements OnInit ,OnChanges {
   catgrFormGeneral:FormGroup;
   catgrFormData:FormGroup;
-
+  isLoading:boolean = false;
 
   constructor(
     private fb:FormBuilder,
-    private ctrgService:CategoryService
+    private ctrgService:CategoryService,
+    private shared:SharedService
   ){
     this.createForm();
    }
@@ -42,14 +44,27 @@ export class AddcategoryComponent implements OnInit ,OnChanges {
   }
 
   saveCategory(){
+    this.shared.isLoading = true;
     const data = new FormData();
-    let file = document.getElementById('catgr_data_file').files[0];alert(file.name)
+    let file = document.getElementById('catgr_data_file').files[0];
     let obj = this.catgrFormGeneral.value;
     for(let property in obj){
-      console.log(property+':'+obj[property]);
       data.append(property, obj[property]);
     }
-   this.ctrgService.addCategory(data).subscribe(resp => console.log(resp))
+   this.ctrgService.addCategory(data).subscribe(
+     resp => {
+       this.shared.isLoading = false;
+       if(resp.status){
+         alert(resp.message);
+       }else if(!resp.status && resp.message){
+          alert(resp.message);
+       }
+     },
+     error =>{
+       alert(error.message);
+       console.log(error);
+     }
+ );
   }
 
 }
