@@ -4,7 +4,7 @@
      <mat-card-title>Add Category</mat-card-title>
      <div class="ctgr_top_nav">
        <div class="ctgr_top_nav_inner">
-       <button title="Save" routerLink="/category/add" class="top_button">
+       <button title="Save" (click)="saveCategory()" class="top_button">
         <mat-icon>save</mat-icon>
       </button>
       <button title="Return" class="top_button cancel_add_btn">
@@ -60,10 +60,10 @@
 </button>
 </mat-form-field>
 <div class="mat-form-field">
-  <input type="file" class="catgr_data_file"/>
+  <input type="file" class="catgr_data_file" id="catgr_data_file"/>
 </div>
 <mat-form-field>
-  <mat-select placeholder="Status" disableRipple>
+  <mat-select placeholder="Status" disableRipple formControlName="status">
     <mat-option value="1">Enabled</mat-option>
     <mat-option value="0">Disabled</mat-option>
   </mat-select>
