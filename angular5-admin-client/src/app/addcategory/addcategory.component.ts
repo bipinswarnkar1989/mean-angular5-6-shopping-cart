@@ -55,9 +55,9 @@ export class AddcategoryComponent implements OnInit ,OnChanges {
      resp => {
        this.shared.isLoading = false;
        if(resp.status){
-         alert(resp.message);
+         this.shared.openSnackBar(resp.message, 'Ok');
        }else if(!resp.status && resp.message){
-          alert(resp.message);
+          this.shared.openSnackBar(resp.message, 'Ok');
        }
      },
      error =>{
