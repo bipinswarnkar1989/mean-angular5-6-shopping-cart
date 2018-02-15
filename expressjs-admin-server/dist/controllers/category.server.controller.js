@@ -2,12 +2,32 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 // ./expressjs-admin-server/controllers/category.server.controller.ts
 var category_server_model_1 = require("../models/category.server.model");
+var multer = require("multer");
+//set multer storage
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './public/images/category');
+    },
+    filename: function (req, file, cb) {
+        var date = Date.now();
+        var newImageName = file.originalname.split('.')[file.originalname.split('.').length - 2];
+        newImageName = newImageName.replace(/ /g, '_');
+        newImageName = date + newImageName + "." + file.originalname.split('.')[file.originalname.split('.').length - 1];
+        cb(null, newImageName);
+    }
+});
+var Upload = multer({
+    storage: storage
+}).single('image');
 var categoryController = /** @class */ (function () {
     function categoryController() {
         this.createCategory = function (req, res) {
             console.log('createCategory: ' + JSON.stringify(req.body));
             if (req.body) {
                 var newCategory = new category_server_model_1.default(req.body);
+                if (req.file) {
+                    newCategory.image = req.file.path;
+                }
                 newCategory.save(function (err, catgr) {
                     if (err) {
                         return res.json({ success: false, message: 'Something going wrong', err: err });
@@ -17,6 +37,19 @@ var categoryController = /** @class */ (function () {
                     }
                 });
             }
+        };
+        this.uploadCtgrImage = function (req, res, next) {
+            console.log('uploadCtgrImage: ' + JSON.stringify(req.file));
+            Upload(req, res, function (err) {
+                if (err) {
+                    console.log('ERROR:' + err);
+                    return res.json({ 'success': false, 'message': err });
+                    ;
+                }
+                else {
+                    next();
+                }
+            });
         };
         this.fetchCategory = function (req, res) {
             console.log('fetchCategory: ' + JSON.stringify(req.params));

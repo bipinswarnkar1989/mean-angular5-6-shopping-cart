@@ -6,7 +6,7 @@ const setCategoryRoutes = (app) => {
   const router = express.Router();
   const categoryCtrl = new categoryController();
   router.route('/category')
-      .post(categoryCtrl.createCategory)
+      .post(categoryCtrl.uploadCtgrImage,categoryCtrl.createCategory)
       .put(categoryCtrl.editCategory);
 
   router.route('/category/search/:q')

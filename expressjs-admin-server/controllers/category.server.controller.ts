@@ -1,11 +1,33 @@
 // ./expressjs-admin-server/controllers/category.server.controller.ts
 import Category from '../models/category.server.model';
+import * as multer from 'multer';
+
+//set multer storage
+var storage = multer.diskStorage({
+  destination:(req,file,cb) => {
+    cb(null, './public/images/category');
+  },
+  filename:(req,file,cb) => {
+    let date = Date.now();
+    var newImageName = file.originalname.split('.')[file.originalname.split('.').length - 2];
+    newImageName = newImageName.replace(/ /g, '_');
+    newImageName = date + newImageName + "." + file.originalname.split('.')[file.originalname.split('.').length - 1];
+    cb(null, newImageName);
+  }
+})
+
+const Upload = multer({
+  storage:storage
+}).single('image');
 
 export default class categoryController{
   createCategory = (req,res) => {
     console.log('createCategory: '+ JSON.stringify(req.body));
     if(req.body){
       var newCategory = new Category(req.body);
+      if(req.file){
+        newCategory.image = req.file.path;
+      }
       newCategory.save((err,catgr) => {
         if(err){
           return res.json({success:false,message:'Something going wrong',err});
@@ -15,6 +37,19 @@ export default class categoryController{
         }
       })
     }
+  }
+
+  uploadCtgrImage = (req,res,next) => {
+    console.log('uploadCtgrImage: '+ JSON.stringify(req.file));
+    Upload(req,res,err => {
+      if(err){
+           console.log('ERROR:'+err);
+           return res.json({'success':false,'message':err});;
+         }
+         else{
+           next();
+         }
+    });
   }
 
   fetchCategory = (req,res) => {

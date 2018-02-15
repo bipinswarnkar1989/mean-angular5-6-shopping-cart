@@ -52,6 +52,9 @@ export class AddcategoryComponent implements OnInit ,OnChanges {
     for(let property in obj){
       data.append(property, obj[property]);
     }
+    if(file && file.name !== '' && file.name !== undefined){
+      data.append('image',file);
+    }
    this.ctrgService.addCategory(data).subscribe(
      resp => {
        this.shared.isLoading = false;
