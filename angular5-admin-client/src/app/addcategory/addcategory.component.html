@@ -13,9 +13,14 @@
        </div>
      </div>
        <mat-card-content>
-         <mat-tab-group>
+         <div class="button-row">
+  <button (click)="toogleTabContent(true)" mat-raised-button color="{{showGeneral === true ? 'primary' : 'basic'}}" >General</button>
+  <button (click)="toogleTabContent(false)" mat-raised-button color="{{showGeneral !== true ? 'primary' : 'basic'}}" >Data</button>
+</div>
+
+         <div class="tabDiv">
   <!-- General Inputs Tab -->
-  <mat-tab label="General">
+  <div class="General" [hidden]="!showGeneral">
     <form [formGroup]="catgrFormGeneral" novalidate>
     <mat-form-field class="form-field">
  <input matInput type="text" placeholder="Category Name" formControlName="name"/>
@@ -48,10 +53,10 @@
 </button>
 </mat-form-field>
 </form>
-</mat-tab>
+</div>
 
 <!-- Data Inputs Tab -->
-<mat-tab label="Data">
+<div class="Data" [hidden]="showGeneral">
   <form [formGroup]="catgrFormData" novalidate>
   <mat-form-field class="form-field">
 <input matInput type="text" placeholder="Parent" formControlName="parent" />
@@ -69,11 +74,10 @@
   </mat-select>
 </mat-form-field>
 </form>
-</mat-tab>
-</mat-tab-group>
+</div>
+</div>
        </mat-card-content>
   </mat-card>
-  <p>Form value: {{ catgrFormGeneral.value | json }}</p>
-  <p>Form value: {{ catgrFormData.value | json }}</p>
+
 </div>
 </div>
