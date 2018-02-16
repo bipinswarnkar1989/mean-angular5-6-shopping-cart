@@ -61,6 +61,9 @@ export class AddcategoryComponent implements OnInit ,OnChanges {
      this.ctrgService.addCategory(data).subscribe(
        resp => {
          this.shared.isLoading = false;
+         this.catgrFormGeneral.reset();
+         this.catgrFormData.reset();
+         f.value = "";
          if(resp.status){
            this.shared.openSnackBar(resp.message, 'Ok');
          }else if(!resp.status && resp.message){
@@ -80,6 +83,12 @@ export class AddcategoryComponent implements OnInit ,OnChanges {
 
   toogleTabContent(b:boolean){
     this.showGeneral = b;
+  }
+
+  clearInput(n){
+    let id = <HTMLInputElement>document.getElementById(n);
+     id.value = '';
+    return;
   }
 
 }
