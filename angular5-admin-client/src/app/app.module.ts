@@ -46,6 +46,7 @@ import { ServicesModule } from './services/services.module';
 import { DashComponent } from './dash/dash.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { AddcategoryComponent } from './addcategory/addcategory.component';
+import { ManufacturersComponent } from './manufacturers/manufacturers.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { AddcategoryComponent } from './addcategory/addcategory.component';
     LoginComponent,
     DashComponent,
     CategoriesComponent,
-    AddcategoryComponent
+    AddcategoryComponent,
+    ManufacturersComponent
   ],
   imports: [
     BrowserModule,
