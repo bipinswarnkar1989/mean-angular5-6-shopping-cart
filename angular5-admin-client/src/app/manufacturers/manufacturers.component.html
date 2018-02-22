@@ -1,3 +1,41 @@
-<p>
-  manufacturers works!
-</p>
+<div class="main_content">
+  <div class="nanufacturersDiv">
+    <div class="ctgr_top_nav">
+      <div class="ctgr_top_nav_inner">
+      <button routerLink="/category/add" class="add_catgr_button">
+       <mat-icon>add</mat-icon>
+     </button>
+     <button class="refresh_catgr_button">
+      <mat-icon>refresh</mat-icon>
+    </button>
+     <button class="delete_catgr_button">
+      <mat-icon>delete</mat-icon>
+    </button>
+      </div>
+    </div>
+  <h2>ManuFacturers</h2>
+  <div class="catgr_table_div mat-elevation-z8">
+    <mat-grid-list cols="2" rowHeight="70px">
+    <mat-grid-tile>
+      <div class="search-form">
+          <mat-form-field floatLabel="auto">
+            <input matInput [formControl]="searchManftrField" placeholder="Search database">
+          </mat-form-field>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div class="filter-form">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+          </mat-form-field>
+        </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  
+    
+  </div>
+  
+  
+  </div>
+  </div>
+  
