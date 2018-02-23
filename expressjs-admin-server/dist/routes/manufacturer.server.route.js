@@ -8,6 +8,8 @@ var setmanufacturerRoutes = function (app) {
     var mftrCtrl = new manufacturer_server_controller_1.default();
     router.route('/manufacturer')
         .post(mftrCtrl.uploadMftrImage, mftrCtrl.createManufacturer);
+    router.route('/manufacturer/:page/:limit')
+        .get(mftrCtrl.fetchManufacturer);
     app.use('/api/manufacturer', router);
 };
 //# sourceMappingURL=manufacturer.server.route.js.map

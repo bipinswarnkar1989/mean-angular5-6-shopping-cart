@@ -59,4 +59,30 @@ export default class manufacturerController{
               }
         })
     }
+
+    fetchManufacturer = (req,res) => {
+        console.log('fetchManufacturer: '+req.params);
+        let limit_value:number = req.params.limit < 30 ? req.params.limit : 30;
+        let page:number = req.params.page;
+        let skip_value:number = (page * limit_value) - limit_value;
+        Manufacturer.find()
+                    .limit(limit_value)
+                    .skip(skip_value)
+                    .exec((err,mftrs) => {
+                       if (err) {
+                        console.log(err);
+                        return res.json({
+                            success:false,
+                            message:'Some Error',
+                            err
+                        });
+                       }else{
+                        return res.json({
+                            success:true,
+                            message:'Manufacturer Fetched Successfully',
+                            mftrs
+                        })
+                    }
+                    })
+    }
 }

@@ -8,6 +8,9 @@ const setmanufacturerRoutes = (app) => {
     router.route('/manufacturer')
              .post(mftrCtrl.uploadMftrImage,mftrCtrl.createManufacturer);
 
+    router.route('/manufacturer/:page/:limit')
+            .get(mftrCtrl.fetchManufacturer);
+
     app.use('/api/manufacturer',router);
 }
 

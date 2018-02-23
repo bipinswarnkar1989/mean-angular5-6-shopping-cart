@@ -59,6 +59,32 @@ var manufacturerController = /** @class */ (function () {
                 }
             });
         };
+        this.fetchManufacturer = function (req, res) {
+            console.log('fetchManufacturer: ' + req.params);
+            var limit_value = req.params.limit < 30 ? req.params.limit : 30;
+            var page = req.params.page;
+            var skip_value = (page * limit_value) - limit_value;
+            manufacturer_server_model_1.default.find()
+                .limit(limit_value)
+                .skip(skip_value)
+                .exec(function (err, mftrs) {
+                if (err) {
+                    console.log(err);
+                    return res.json({
+                        success: false,
+                        message: 'Some Error',
+                        err: err
+                    });
+                }
+                else {
+                    return res.json({
+                        success: true,
+                        message: 'Manufacturer Fetched Successfully',
+                        mftrs: mftrs
+                    });
+                }
+            });
+        };
     }
     return manufacturerController;
 }());
