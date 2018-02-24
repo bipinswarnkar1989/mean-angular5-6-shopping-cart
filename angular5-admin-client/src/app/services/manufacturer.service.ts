@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Manufacturer } from '../models/manufacturer.model';
 import 'rxjs/add/operator/map';
 import { Response } from '@angular/http';
+
 @Injectable()
 export class ManufacturerService {
   apiUrl:String = 'http://localhost:3001/api/manufacturer';
@@ -15,8 +16,14 @@ export class ManufacturerService {
   ) { }
   
   getMftr(p):Observable<Manufacturer[]>{
-     return this.http.get<Manufacturer[]>(`${this.apiUrl}/manufacturer/${p.page}/${p.limit}`,{
+     return this.http.get<Manufacturer[]>(`${this.apiUrl}/${p.page}/${p.limit}`,{
        headers:this.httpHeaders.set('authorization',this.token)
      })
+  }
+
+  srch(q):Observable<Manufacturer[]>{
+    return this.http.get<Manufacturer[]>(`${this.apiUrl}/search/${q}`,{
+      headers:this.httpHeaders.set('authorization',this.token)
+    })
   }
 }

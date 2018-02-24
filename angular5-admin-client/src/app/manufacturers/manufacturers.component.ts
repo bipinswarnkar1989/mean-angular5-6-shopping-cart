@@ -7,6 +7,12 @@ import {SelectionModel} from '@angular/cdk/collections';
 
 import { ManufacturerService } from '../services/manufacturer.service';
 import { Manufacturer } from '../models/manufacturer.model';
+import { SharedService } from '../services/shared.service';
+
+import 'rxjs/operator/debounceTime';
+import 'rxjs/operator/distinctUntilChanged';
+import 'rxjs/operator/switchMap';
+import 'rxjs/operator/do';
 
 @Component({
   selector: 'app-manufacturers',
@@ -18,6 +24,7 @@ export class ManufacturersComponent implements OnInit {
   searchManftrField:FormControl;
   manufacturers:Manufacturer[] = [];
   routeParams = this.route.params['_value'];
+  loading:Boolean = false;
 
   displayedColumns = ['select', 'id', 'name', 'sort_order'];
   dataSource = new MatTableDataSource<Manufacturer>(this.manufacturers);
@@ -25,12 +32,35 @@ export class ManufacturersComponent implements OnInit {
 
   constructor(
     private mftrService:ManufacturerService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private sharedService:SharedService
   ) { }
 
   ngOnInit() {
     this.searchManftrField = new FormControl();
     this.route.params.subscribe(params => this.getMftr(params));
+    this.searchManftrField.valueChanges
+                  .debounceTime(400)
+                  .do(() => this.loading = true)
+                  .switchMap(term => {
+                    if (term.length > 0) {
+                      this.sharedService.isLoading = true;
+                      return this.mftrService.srch(term);
+                    }else{
+                      return this.mftrService.getMftr(this.routeParams);
+                    }
+                  })
+                  .do(() => {
+                    this.loading = false;
+                    this.sharedService.isLoading = false;
+                  })
+                  .subscribe(
+                    data => {
+                      this.manufacturers = data['mftrs'];
+                      this.dataSource = new MatTableDataSource<Manufacturer>(this.manufacturers);
+                    },
+                    error => console.log(error)
+                  )
   }
 
   getMftr(params):void{

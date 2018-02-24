@@ -91,6 +91,26 @@ var manufacturerController = /** @class */ (function () {
                 }
             });
         };
+        this.searchManufacturer = function (req, res) {
+            console.log('searchManufacturer: ' + JSON.stringify(req.params));
+            var q = req.params.q;
+            if (q) {
+                var searchKey = '/.*' + q + '.*/i';
+                var regex = { $regex: eval(searchKey) };
+                manufacturer_server_model_1.default.find({ $or: [{ name: regex }] })
+                    .exec(function (err, mftrs) {
+                    if (err) {
+                        return res.json({ success: false, message: 'Something going wrong', err: err });
+                    }
+                    else if (!mftrs) {
+                        return res.json({ success: false, message: 'Manufacturer Not Found!' });
+                    }
+                    else if (mftrs) {
+                        return res.json({ success: true, message: 'Manufacturer Fetched Successfully', mftrs: mftrs });
+                    }
+                });
+            }
+        };
     }
     return manufacturerController;
 }());

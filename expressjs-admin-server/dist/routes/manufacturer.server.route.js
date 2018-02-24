@@ -6,9 +6,11 @@ var manufacturer_server_controller_1 = require("../controllers/manufacturer.serv
 var setmanufacturerRoutes = function (app) {
     var router = express.Router();
     var mftrCtrl = new manufacturer_server_controller_1.default();
-    router.route('/manufacturer')
+    router.route('/search/:q')
+        .get(mftrCtrl.searchManufacturer);
+    router.route('/')
         .post(mftrCtrl.uploadMftrImage, mftrCtrl.createManufacturer);
-    router.route('/manufacturer/:page/:limit')
+    router.route('/:page/:limit')
         .get(mftrCtrl.fetchManufacturer);
     app.use('/api/manufacturer', router);
 };

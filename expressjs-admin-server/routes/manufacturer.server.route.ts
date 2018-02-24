@@ -5,10 +5,14 @@ import manufacturerController from '../controllers/manufacturer.server.controlle
 const setmanufacturerRoutes = (app) => {
     const router = express.Router();
     const mftrCtrl = new manufacturerController();
-    router.route('/manufacturer')
+
+    router.route('/search/:q')
+    .get(mftrCtrl.searchManufacturer);
+
+    router.route('/')
              .post(mftrCtrl.uploadMftrImage,mftrCtrl.createManufacturer);
 
-    router.route('/manufacturer/:page/:limit')
+    router.route('/:page/:limit')
             .get(mftrCtrl.fetchManufacturer);
 
     app.use('/api/manufacturer',router);

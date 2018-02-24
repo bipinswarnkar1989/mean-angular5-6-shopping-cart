@@ -90,4 +90,25 @@ export default class manufacturerController{
                     }
                     })
     }
+
+    searchManufacturer = (req,res) => {
+        console.log('searchManufacturer: '+ JSON.stringify(req.params));
+        let q = req.params.q;
+        if(q){
+            let searchKey = '/.*' + q + '.*/i';
+            let regex = {$regex:eval(searchKey)};
+            Manufacturer.find({$or:[{name:regex}]})
+                        .exec((err,mftrs) => {
+                            if(err){
+                                return res.json({success:false,message:'Something going wrong',err});
+                              }
+                              else if(!mftrs){
+                                return res.json({success:false,message:'Manufacturer Not Found!'});
+                              }
+                              else if(mftrs){
+                                return res.json({success:true,message:'Manufacturer Fetched Successfully',mftrs});
+                              }
+                        })
+        }
+    }
 }
