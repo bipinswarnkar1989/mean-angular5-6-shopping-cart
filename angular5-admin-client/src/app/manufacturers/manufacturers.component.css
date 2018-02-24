@@ -1,0 +1,60 @@
+.manufacturersDiv{
+    text-align: center;
+  }
+  
+  .mftr_table_div {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+  
+  .mat-table {
+    overflow: visible;
+  }
+  
+  .mat-column-select {
+    overflow: visible;
+  }
+  
+  .mat-paginator{
+  
+  }
+  
+  .filter-form{
+    min-height: 64px;
+   padding: 8px 24px 0;
+   float: left;
+  }
+  .search-form{
+    min-height: 64px;
+   padding: 8px 24px 0;
+   float: right;
+  }
+  .mftr_top_nav{
+    position: relative;
+  }
+  .mftr_top_nav_inner{
+    position: absolute;
+    z-index: 2;
+    right: 2px;
+    top:2px;
+  }
+  .add_mftr_button{
+    background-color: #0277bd;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+  }
+  .delete_mftr_button{
+    background-color: #b71c1c;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+  }
+  .refresh_mftr_button{
+    background-color: #64b5f6;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer;
+  }
+  

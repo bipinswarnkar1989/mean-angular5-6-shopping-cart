@@ -1,20 +1,20 @@
 <div class="main_content">
-  <div class="nanufacturersDiv">
-    <div class="ctgr_top_nav">
-      <div class="ctgr_top_nav_inner">
-      <button routerLink="/category/add" class="add_catgr_button">
+  <div class="manufacturersDiv">
+    <div class="mftr_top_nav">
+      <div class="mftr_top_nav_inner">
+      <button routerLink="/manufacturer/add" class="add_mftr_button">
        <mat-icon>add</mat-icon>
      </button>
-     <button class="refresh_catgr_button">
+     <button class="refresh_mftr_button">
       <mat-icon>refresh</mat-icon>
     </button>
-     <button class="delete_catgr_button">
+     <button class="delete_mftr_button">
       <mat-icon>delete</mat-icon>
     </button>
       </div>
     </div>
   <h2>ManuFacturers</h2>
-  <div class="catgr_table_div mat-elevation-z8">
+  <div class="mftr_table_div mat-elevation-z8">
     <mat-grid-list cols="2" rowHeight="70px">
     <mat-grid-tile>
       <div class="search-form">
@@ -32,6 +32,48 @@
     </mat-grid-tile>
   </mat-grid-list>
   
+  <mat-table #table [dataSource]="dataSource">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null"
+                      [checked]="selection.hasValue() && isAllSelected()"
+                      [indeterminate]="selection.hasValue() && !isAllSelected()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()"
+                      (change)="$event ? selection.toggle(row) : null"
+                      [checked]="selection.isSelected(row)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="sort_order">
+      <mat-header-cell *matHeaderCellDef> Sort Order </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.sort_order}} </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+             (click)="selection.toggle(row)">
+    </mat-row>
+  </mat-table>
     
   </div>
   
