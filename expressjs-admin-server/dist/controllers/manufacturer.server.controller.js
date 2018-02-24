@@ -49,20 +49,26 @@ var manufacturerController = /** @class */ (function () {
         };
         this.uploadMftrImage = function (req, res, next) {
             console.log('uploadMftrImage: ' + req.file);
-            Upload(req, res, function (err) {
-                if (err) {
-                    console.log('ERROR:' + err);
-                    return res.json({ success: false, message: 'Image Error', err: err });
-                }
-                else {
-                    next();
-                }
-            });
+            if (req.file) {
+                Upload(req, res, function (err) {
+                    if (err) {
+                        console.log('ERROR:' + err);
+                        return res.json({ success: false, message: 'Image Error', err: err });
+                    }
+                    else {
+                        next();
+                    }
+                });
+            }
+            else {
+                next();
+            }
         };
         this.fetchManufacturer = function (req, res) {
             console.log('fetchManufacturer: ' + req.params);
-            var limit_value = req.params.limit < 30 ? req.params.limit : 30;
-            var page = req.params.page;
+            var limit = parseInt(req.params.limit);
+            var limit_value = limit < 30 ? limit : 30;
+            var page = parseInt(req.params.page);
             var skip_value = (page * limit_value) - limit_value;
             manufacturer_server_model_1.default.find()
                 .limit(limit_value)

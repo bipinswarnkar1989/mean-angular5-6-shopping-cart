@@ -49,6 +49,7 @@ export default class manufacturerController{
 
     uploadMftrImage = (req,res,next) => {
         console.log('uploadMftrImage: '+ req.file);
+       if(req.file){
         Upload(req,res,err => {
             if(err){
                 console.log('ERROR:'+err);
@@ -58,12 +59,16 @@ export default class manufacturerController{
                 next();
               }
         })
+       }else{
+        next();
+       }
     }
 
     fetchManufacturer = (req,res) => {
         console.log('fetchManufacturer: '+req.params);
-        let limit_value:number = req.params.limit < 30 ? req.params.limit : 30;
-        let page:number = req.params.page;
+        let limit = parseInt(req.params.limit);
+        let limit_value:number = limit < 30 ? limit : 30;
+        let page:number = parseInt(req.params.page);
         let skip_value:number = (page * limit_value) - limit_value;
         Manufacturer.find()
                     .limit(limit_value)

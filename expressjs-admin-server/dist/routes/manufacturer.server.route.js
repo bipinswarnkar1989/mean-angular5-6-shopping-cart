@@ -12,4 +12,5 @@ var setmanufacturerRoutes = function (app) {
         .get(mftrCtrl.fetchManufacturer);
     app.use('/api/manufacturer', router);
 };
+exports.default = setmanufacturerRoutes;
 //# sourceMappingURL=manufacturer.server.route.js.map

@@ -12,6 +12,7 @@ var dotenv = require("dotenv");
 var mongoose = require("mongoose");
 var user_server_route_1 = require("./routes/user.server.route");
 var category_server_route_1 = require("./routes/category.server.route");
+var manufacturer_server_route_1 = require("./routes/manufacturer.server.route");
 var app = express();
 exports.app = app;
 dotenv.load({ path: '.env' });
@@ -41,6 +42,7 @@ mongodb
     console.log("Connected to MongoDb on " + db.host + ":" + db.port);
     user_server_route_1.default(app);
     category_server_route_1.default(app);
+    manufacturer_server_route_1.default(app);
     app.get('/', function (req, res) {
         return res.end('Api working');
     });

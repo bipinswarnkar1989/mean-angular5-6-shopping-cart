@@ -14,3 +14,5 @@ const setmanufacturerRoutes = (app) => {
     app.use('/api/manufacturer',router);
 }
 
+export default setmanufacturerRoutes;
+
