@@ -23,6 +23,7 @@
     "native-base": "^2.3.9",
     "react": "16.2.0",
     "react-native": "0.52.0",
-    "react-navigation": "^1.4.0"
+    "react-navigation": "^1.4.0",
+    "react-redux": "^5.0.7"
   }
 }
