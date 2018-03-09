@@ -7,7 +7,7 @@ import {
 import { Container, Content, Icon, Header, Left, Body, Right, Button, Title } from 'native-base';
 import AppHeader from './AppHeader';
 
-export default class MainScreen extends Component {
+export default class Cart extends Component {
 
     render() {
         return (
@@ -15,7 +15,7 @@ export default class MainScreen extends Component {
             <View transparent style={{ backgroundColor:"#dc4239", height: 24 }} />
             <AppHeader navigation={this.props.navigation}/>
           <Content padder>
-          <Text>MainScreen Content</Text>
+          <Text>Cart Content</Text>
         </Content>
         </Container>
         )
