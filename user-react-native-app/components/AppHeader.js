@@ -27,7 +27,7 @@ export default class AppHeader extends Component {
            }  
          </Left>
          <Body>
-           <Title>{this.props.navigation.state.routeName}</Title>
+           <Title>{this.props.navigation.state.routeName === 'MainScreen' ? 'eKart' : this.props.navigation.state.routeName}</Title>
          </Body>
          <Right>
            <Button transparent>
