@@ -18,6 +18,8 @@ import {
     Thumbnail,
      } from 'native-base';
 import AppHeader from './AppHeader';
+import Feeds from './Feeds';
+import DealsOfTheDay from './DealsOfTheDay';
 
 export default class MainScreen extends Component {
 
@@ -91,6 +93,12 @@ export default class MainScreen extends Component {
             </View>
             </ScrollView>
             </View>
+            <View>
+                <Feeds/>
+            </View>
+            <View style={styles.DealsOfTheDayStyle}>
+              <DealsOfTheDay/>
+            </View>
           
         </Content>
         </Container>
@@ -114,5 +122,8 @@ const styles = StyleSheet.create({
       alignItems:'center',
       justifyContent: 'space-between',
       paddingHorizontal: 8
+    },
+    DealsOfTheDayStyle:{
+        backgroundColor:'#dc4239'
     }
   });
