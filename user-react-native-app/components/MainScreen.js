@@ -124,6 +124,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 8
     },
     DealsOfTheDayStyle:{
-        backgroundColor:'#dc4239'
+        backgroundColor:'#dc4239',
+        marginBottom:20
     }
   });
