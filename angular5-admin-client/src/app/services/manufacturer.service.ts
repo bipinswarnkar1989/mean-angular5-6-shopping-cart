@@ -26,4 +26,10 @@ export class ManufacturerService {
       headers:this.httpHeaders.set('authorization',this.token)
     })
   }
+
+  addMftr(m):Observable<any>{
+    return this.http.post<any>(`${this.apiUrl}/`, m, {
+      headers:this.httpHeaders.set('authorization',this.token)
+    })
+  }
 }

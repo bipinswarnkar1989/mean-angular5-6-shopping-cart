@@ -22,7 +22,7 @@ const Upload = multer({
 
 export default class manufacturerController{
     createManufacturer = (req,res,next) => {
-        console.log('createManufacturer: '+req.body);
+        console.log('createManufacturer: '+ JSON.stringify(req.body));
         if (req.body) {
             let newManuftr = new Manufacturer(req.body);
             if (req.file) {
@@ -49,7 +49,6 @@ export default class manufacturerController{
 
     uploadMftrImage = (req,res,next) => {
         console.log('uploadMftrImage: '+ req.file);
-       if(req.file){
         Upload(req,res,err => {
             if(err){
                 console.log('ERROR:'+err);
@@ -59,9 +58,7 @@ export default class manufacturerController{
                 next();
               }
         })
-       }else{
-        next();
-       }
+       
     }
 
     fetchManufacturer = (req,res) => {

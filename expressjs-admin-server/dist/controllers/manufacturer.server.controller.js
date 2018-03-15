@@ -22,7 +22,7 @@ var Upload = multer({
 var manufacturerController = /** @class */ (function () {
     function manufacturerController() {
         this.createManufacturer = function (req, res, next) {
-            console.log('createManufacturer: ' + req.body);
+            console.log('createManufacturer: ' + JSON.stringify(req.body));
             if (req.body) {
                 var newManuftr = new manufacturer_server_model_1.default(req.body);
                 if (req.file) {
@@ -49,20 +49,15 @@ var manufacturerController = /** @class */ (function () {
         };
         this.uploadMftrImage = function (req, res, next) {
             console.log('uploadMftrImage: ' + req.file);
-            if (req.file) {
-                Upload(req, res, function (err) {
-                    if (err) {
-                        console.log('ERROR:' + err);
-                        return res.json({ success: false, message: 'Image Error', err: err });
-                    }
-                    else {
-                        next();
-                    }
-                });
-            }
-            else {
-                next();
-            }
+            Upload(req, res, function (err) {
+                if (err) {
+                    console.log('ERROR:' + err);
+                    return res.json({ success: false, message: 'Image Error', err: err });
+                }
+                else {
+                    next();
+                }
+            });
         };
         this.fetchManufacturer = function (req, res) {
             console.log('fetchManufacturer: ' + req.params);
