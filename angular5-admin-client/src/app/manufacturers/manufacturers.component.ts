@@ -26,7 +26,7 @@ export class ManufacturersComponent implements OnInit {
   routeParams = this.route.params['_value'];
   loading:Boolean = false;
 
-  displayedColumns = ['select', 'id', 'name', 'sort_order'];
+  displayedColumns = ['select', 'id', 'name', 'sort_order','edit'];
   dataSource = new MatTableDataSource<Manufacturer>(this.manufacturers);
   selection = new SelectionModel<Manufacturer>(true, []);
 
@@ -95,6 +95,10 @@ masterToggle() {
   this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
+}
+
+editMftr(id){
+  alert(id)
 }
 
 }

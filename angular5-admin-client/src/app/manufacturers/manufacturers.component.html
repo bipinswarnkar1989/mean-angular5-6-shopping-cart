@@ -62,10 +62,18 @@
       <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
     </ng-container>
 
-    <!-- Description Column -->
+    <!-- Sort Order Column -->
     <ng-container matColumnDef="sort_order">
       <mat-header-cell *matHeaderCellDef> Sort Order </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.sort_order}} </mat-cell>
+    </ng-container>
+
+    <!-- Edit COlumn -->
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+      <mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
+        <mat-icon (click)="editMftr(element._id)" style="cursor:pointer">edit</mat-icon> 
+      </mat-cell>
     </ng-container>
 
 
