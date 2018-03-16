@@ -48,6 +48,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { AddcategoryComponent } from './addcategory/addcategory.component';
 import { ManufacturersComponent } from './manufacturers/manufacturers.component';
 import { AddmanufacturerComponent } from './addmanufacturer/addmanufacturer.component';
+import { EditmanufacturerComponent } from './editmanufacturer/editmanufacturer.component';
 
 
 @NgModule({
@@ -58,7 +59,8 @@ import { AddmanufacturerComponent } from './addmanufacturer/addmanufacturer.comp
     CategoriesComponent,
     AddcategoryComponent,
     ManufacturersComponent,
-    AddmanufacturerComponent
+    AddmanufacturerComponent,
+    EditmanufacturerComponent
   ],
   imports: [
     BrowserModule,
@@ -101,6 +103,7 @@ import { AddmanufacturerComponent } from './addmanufacturer/addmanufacturer.comp
     HttpClientModule,
 
   ],
+  entryComponents: [EditmanufacturerComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

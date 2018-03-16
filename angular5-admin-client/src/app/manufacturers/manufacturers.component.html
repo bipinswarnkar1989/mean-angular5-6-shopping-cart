@@ -72,7 +72,9 @@
     <ng-container matColumnDef="edit">
       <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
       <mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
-        <mat-icon (click)="editMftr(element._id)" style="cursor:pointer">edit</mat-icon> 
+        <button (click)="openDialog()" mat-icon-button>
+            <mat-icon>edit</mat-icon> 
+        </button>
       </mat-cell>
     </ng-container>
 

@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router,ActivatedRoute } from '@angular/router';
 
-import {MatTableDataSource} from '@angular/material';
+import {MatTableDataSource, MatDialog} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
 
 import { ManufacturerService } from '../services/manufacturer.service';
 import { Manufacturer } from '../models/manufacturer.model';
 import { SharedService } from '../services/shared.service';
+import { EditmanufacturerComponent } from '../editmanufacturer/editmanufacturer.component';
 
 import 'rxjs/operator/debounceTime';
 import 'rxjs/operator/distinctUntilChanged';
@@ -33,7 +34,8 @@ export class ManufacturersComponent implements OnInit {
   constructor(
     private mftrService:ManufacturerService,
     private route:ActivatedRoute,
-    private sharedService:SharedService
+    private sharedService:SharedService,
+    private dialog:MatDialog
   ) { }
 
   ngOnInit() {
@@ -101,4 +103,21 @@ editMftr(id){
   alert(id)
 }
 
+openDialog() {
+  const dialogRef = this.dialog.open(EditmanufacturerComponent, {
+    height: '350px'
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${result}`);
+  });
 }
+
+}
+
+
+@Component({
+  selector: 'dialog-content-example-dialog',
+  template: '<div>Dialog</div>',
+})
+export class DialogContentExampleDialog {}
