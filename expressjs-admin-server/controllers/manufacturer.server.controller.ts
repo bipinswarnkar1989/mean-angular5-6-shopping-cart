@@ -108,4 +108,26 @@ export default class manufacturerController{
                         })
         }
     }
+
+    updateManufacturer = (req,res) => {
+        console.log('updateManufacturer: '+ JSON.stringify(req.body));
+        if (req.body) {
+            if (req.file) {
+                req.body.image = req.file.path;
+            }
+            Manufacturer.findByIdAndUpdate(
+                req.body._id,
+                { $set: req.body }, 
+                { new:true },
+                function(err,mftr){
+                    if(err){
+                        return res.json({success:false,message:'Something going wrong',err});
+                      }
+                      else if(mftr){
+                        return res.json({success:true,message:'Manufacturer Updated Successfully',mftr});
+                      }
+                }
+            )
+        }
+    }
 }

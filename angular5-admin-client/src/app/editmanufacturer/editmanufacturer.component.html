@@ -1,3 +1,30 @@
-<p>
-  editmanufacturer works!
-</p>
+<mat-card>
+    <mat-card-title>Edit Manufacturer {{ data.name }}</mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="mftrFormData" (ngSubmit)="editMftr()" novalidate>
+           <mat-form-field class="form-field">
+               <input matInput type="text" placeholder="Manufacturer Name" formControlName="name" id="name"/>
+               <button mat-button *ngIf="mftrFormData.value.name" matSuffix mat-icon-button aria-label="Clear" (click)="mftrFormData.value.name='';clearInput('name')">
+               <mat-icon>close</mat-icon>
+               </button>
+               <mat-error *ngIf="mftrFormData.invalid">
+              You must enter a value</mat-error>
+              </mat-form-field>
+              <div class="mat-form-field">
+                 <input type="file" name="image" class="editftr_data_file" id="editmftr_data_file"/>
+               </div>
+               <mat-form-field class="form-field">
+                   <input matInput type="text" placeholder="Sort Order" formControlName="sort_order" id="sort_order"/>
+                   <button mat-button *ngIf="mftrFormData.value.sort_order" matSuffix mat-icon-button aria-label="Clear" (click)="mftrFormData.value.sort_order='';clearInput('sort_order')">
+                   <mat-icon>close</mat-icon>
+                   </button>
+                   <mat-error *ngIf="mftrFormData.invalid">
+                  You must enter a value</mat-error>
+                  </mat-form-field>
+                  <div align="center">
+                      <button type="submit" mat-raised-button color="primary">Submit</button>
+                  </div>
+        </form>
+
+          </mat-card-content>
+</mat-card>

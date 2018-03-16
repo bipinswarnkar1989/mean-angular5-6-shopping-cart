@@ -32,4 +32,10 @@ export class ManufacturerService {
       headers:this.httpHeaders.set('authorization',this.token)
     })
   }
+
+  updateMftr(m):Observable<any>{
+    return this.http.put<any>(`${this.apiUrl}/`, m, {
+      headers:this.httpHeaders.set('authorization', this.token)
+    })
+  }
 }

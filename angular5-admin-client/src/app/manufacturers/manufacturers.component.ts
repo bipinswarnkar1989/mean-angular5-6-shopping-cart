@@ -99,12 +99,11 @@ masterToggle() {
       this.dataSource.data.forEach(row => this.selection.select(row));
 }
 
-editMftr(id){
-  alert(id)
-}
 
-openDialog() {
+
+openEditDialog(mftr) {
   const dialogRef = this.dialog.open(EditmanufacturerComponent, {
+    data:mftr,
     height: '350px'
   });
 
@@ -114,10 +113,3 @@ openDialog() {
 }
 
 }
-
-
-@Component({
-  selector: 'dialog-content-example-dialog',
-  template: '<div>Dialog</div>',
-})
-export class DialogContentExampleDialog {}

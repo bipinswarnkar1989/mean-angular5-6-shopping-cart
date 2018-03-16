@@ -9,7 +9,8 @@ var setmanufacturerRoutes = function (app) {
     router.route('/search/:q')
         .get(mftrCtrl.searchManufacturer);
     router.route('/')
-        .post(mftrCtrl.uploadMftrImage, mftrCtrl.createManufacturer);
+        .post(mftrCtrl.uploadMftrImage, mftrCtrl.createManufacturer)
+        .put(mftrCtrl.uploadMftrImage, mftrCtrl.updateManufacturer);
     router.route('/:page/:limit')
         .get(mftrCtrl.fetchManufacturer);
     app.use('/api/manufacturer', router);
