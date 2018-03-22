@@ -124,7 +124,11 @@ export default class manufacturerController{
                         return res.json({success:false,message:'Something going wrong',err});
                       }
                       else if(mftr){
-                        return res.json({success:true,message:'Manufacturer Updated Successfully',mftr});
+                        return res.json({
+                            success:true,
+                            message:'Manufacturer Updated Successfully',
+                            mftr
+                        });
                       }
                 }
             )

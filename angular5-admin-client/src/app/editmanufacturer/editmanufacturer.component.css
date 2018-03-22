@@ -1,6 +1,11 @@
 .mat-form-field{
     width: 100%;
+    padding: 5px;
 }
-.editftr_data_file{
+.editmftr_data_file{
     width: 100%;
+    border: 1px solid hsl(0, 11%, 78%) !important;
+}
+.file-form-field{
+    border: 1px !important;
 }

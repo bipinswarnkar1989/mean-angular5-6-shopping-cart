@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {MAT_DIALOG_DATA} from '@angular/material';
+import {MAT_DIALOG_DATA,MatDialog, MatDialogRef} from '@angular/material';
 import { ManufacturerService } from '../services/manufacturer.service';
 import { SharedService } from '../services/shared.service';
 
@@ -10,13 +10,15 @@ import { SharedService } from '../services/shared.service';
   styleUrls: ['./editmanufacturer.component.css']
 })
 export class EditmanufacturerComponent implements OnInit {
-  mftrFormData:FormGroup
+  mftrFormData:FormGroup;
+  isLoading:Boolean = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb:FormBuilder,
     private mftr:ManufacturerService,
-    private shared:SharedService
+    private shared:SharedService,
+    public dialogRef: MatDialogRef<EditmanufacturerComponent>,
   ) {
     this.createForm();
    }
@@ -40,6 +42,7 @@ export class EditmanufacturerComponent implements OnInit {
   }
 
   editMftr(){
+    this.isLoading = true;
     const data = new FormData();
     let f = <HTMLInputElement>document.getElementById('editmftr_data_file');
     let file = f && f.value !== '' ? f.files[0] : null;
@@ -54,20 +57,26 @@ export class EditmanufacturerComponent implements OnInit {
     if (mftrFormStatus === "VALID") {
       this.mftr.updateMftr(data).subscribe(
         resp => {
-          //this.shared.isLoading = false;
+          this.isLoading = false;
           f.value = '';
-          if(resp.status){
+          if(resp.success){
+            this.dialogRef.close(resp.mftr);
             this.shared.openSnackBar(resp.message, 'Ok');
           }else if(!resp.status && resp.message){
              this.shared.openSnackBar(resp.message, 'Ok');
           }
         },
         error =>{
+          this.isLoading = false;
           alert(error.message);
           console.log(error);
         }
       )
     }
+  }
+
+  cancelUpdate():void {
+    this.dialogRef.close();
   }
 
 }

@@ -10,8 +10,8 @@
                <mat-error *ngIf="mftrFormData.invalid">
               You must enter a value</mat-error>
               </mat-form-field>
-              <div class="mat-form-field">
-                 <input type="file" name="image" class="editftr_data_file" id="editmftr_data_file"/>
+              <div class="mat-form-field file-form-field">
+                 <input type="file" name="image" class="editmftr_data_file" id="editmftr_data_file"/>
                </div>
                <mat-form-field class="form-field">
                    <input matInput type="text" placeholder="Sort Order" formControlName="sort_order" id="sort_order"/>
@@ -22,7 +22,14 @@
                   You must enter a value</mat-error>
                   </mat-form-field>
                   <div align="center">
-                      <button type="submit" mat-raised-button color="primary">Submit</button>
+                      <div [hidden]="!isLoading" >
+                            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+                      </div>
+                   
+                      <div [hidden]="isLoading">
+                            <button type="submit" mat-raised-button color="primary">Submit</button>
+                            <button style="margin-left:8px" type="button" (click)="cancelUpdate()" mat-raised-button color="accent">Cancel</button>
+                      </div>
                   </div>
         </form>
 
