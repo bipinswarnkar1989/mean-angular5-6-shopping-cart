@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import {MatTableDataSource} from '@angular/material';
+import {MatTableDataSource,MatDialog} from '@angular/material';
 import {SelectionModel} from '@angular/cdk/collections';
 import { Router,ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
@@ -11,6 +11,7 @@ import 'rxjs/add/operator/do';
 
 import { Category } from '../models/category.model';
 import { CategoryService } from '../services/category.service';
+import { EditCategoryComponent } from '../edit-category/edit-category.component';
 
 @Component({
   selector: 'app-categories',
@@ -20,7 +21,7 @@ import { CategoryService } from '../services/category.service';
 export class CategoriesComponent implements OnInit {
   Category = new Category();
   categories:Category[] = [];
-  displayedColumns = ['select', 'id', 'name', 'desciption'];
+  displayedColumns = ['select', 'id', 'name', 'edit'];
   dataSource = new MatTableDataSource<Category>(this.categories);
   selection = new SelectionModel<Category>(true, []);
   searchCatgrField:FormControl;
@@ -29,7 +30,8 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private auth:AuthService,
     private ctgrService:CategoryService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private dialog:MatDialog
   ) { }
 
   ngOnInit() {
@@ -88,6 +90,25 @@ export class CategoriesComponent implements OnInit {
    this.isAllSelected() ?
        this.selection.clear() :
        this.dataSource.data.forEach(row => this.selection.select(row));
+ }
+
+ openEditDialog(catgr){
+  const dialogRef = this.dialog.open(EditCategoryComponent, {
+    data:catgr,
+    height: '350px'
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log(`Dialog result: ${JSON.stringify(result)}`);
+    this.categories = this.categories.map((m) => {
+      if (m._id === result._id) {
+         return { ...m, ...result};
+      }
+      return m;
+    });
+    console.log(this.categories);
+    this.dataSource = new MatTableDataSource<Category>(this.categories);
+  });
  }
 
 }

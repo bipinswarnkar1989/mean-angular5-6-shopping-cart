@@ -63,9 +63,19 @@
     </ng-container>
 
     <!-- Description Column -->
-    <ng-container matColumnDef="desciption">
+    <!-- <ng-container matColumnDef="desciption">
       <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.desciption}} </mat-cell>
+    </ng-container> -->
+
+     <!-- Edit COlumn -->
+     <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+      <mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
+        <button (click)="openEditDialog(element)" mat-icon-button>
+            <mat-icon>edit</mat-icon> 
+        </button>
+      </mat-cell>
     </ng-container>
 
 
