@@ -7,13 +7,13 @@ const setCategoryRoutes = (app) => {
   const categoryCtrl = new categoryController();
   router.route('/category')
       .post(categoryCtrl.uploadCtgrImage,categoryCtrl.createCategory)
-      .put(categoryCtrl.editCategory);
+      .put(categoryCtrl.uploadCtgrImage,categoryCtrl.editCategory);
 
   router.route('/category/search/:q')
       .get(categoryCtrl.searchCategory);
 
   router.route('/category/:page/:limit')
-      .get(categoryCtrl.fetchCategory);
+      .get(categoryCtrl.fetchCategories);
 
   router.route('/category/:id')
       .get(categoryCtrl.getCategory)

@@ -8,11 +8,11 @@ var setCategoryRoutes = function (app) {
     var categoryCtrl = new category_server_controller_1.default();
     router.route('/category')
         .post(categoryCtrl.uploadCtgrImage, categoryCtrl.createCategory)
-        .put(categoryCtrl.editCategory);
+        .put(categoryCtrl.uploadCtgrImage, categoryCtrl.editCategory);
     router.route('/category/search/:q')
         .get(categoryCtrl.searchCategory);
     router.route('/category/:page/:limit')
-        .get(categoryCtrl.fetchCategory);
+        .get(categoryCtrl.fetchCategories);
     router.route('/category/:id')
         .get(categoryCtrl.getCategory)
         .delete(categoryCtrl.deleteCategory);

@@ -1,3 +1,88 @@
-<p>
-  edit-category works!
-</p>
+<div class="main_content">
+  <div class="addCategoryDiv">
+    <mat-card>
+       <mat-card-title>Edit Category</mat-card-title>
+       <div class="ctgr_top_nav">
+         <div class="ctgr_top_nav_inner">
+         <button title="Save" (click)="saveCategory()" class="top_button">
+          <mat-icon>save</mat-icon>
+        </button>
+        <button routerLink="/categories/1/10" title="Return" class="top_button cancel_add_btn">
+         <mat-icon>keyboard_return</mat-icon>
+       </button>
+         </div>
+       </div>
+         <mat-card-content>
+           <div class="button-row">
+    <button (click)="toogleTabContent(true)" mat-raised-button color="{{showGeneral === true ? 'primary' : 'basic'}}" >General</button>
+    <button (click)="toogleTabContent(false)" mat-raised-button color="{{showGeneral !== true ? 'primary' : 'basic'}}" >Data</button>
+  </div>
+  
+           <div class="tabDiv">
+    <!-- General Inputs Tab -->
+    <div class="General" [hidden]="!showGeneral">
+      <form [formGroup]="catgrFormGeneral" novalidate>
+      <mat-form-field class="form-field">
+   <input matInput type="text" placeholder="Category Name" formControlName="name" id="name"/>
+   <button mat-button *ngIf="catgrFormGeneral.value.name" matSuffix mat-icon-button aria-label="Clear" (click)="catgrFormGeneral.value.name='';clearInput('name')">
+   <mat-icon>close</mat-icon>
+   </button>
+   <mat-error *ngIf="catgrFormGeneral.invalid">
+  You must enter a value</mat-error>
+  </mat-form-field>
+  <mat-form-field class="form-field">
+  <textarea matInput placeholder="Description" formControlName="desciption" id="description"></textarea>
+  <button mat-button *ngIf="catgrFormGeneral.value.desciption" matSuffix mat-icon-button aria-label="Clear" (click)="catgrFormGeneral.value.desciption='';clearInput('description')">
+  <mat-icon>close</mat-icon>
+  </button>
+  </mat-form-field>
+  <mat-form-field class="form-field">
+  <input matInput type="text" placeholder="Meta Tag Title" formControlName="meta_title" id="meta_title"/>
+  <button mat-button *ngIf="catgrFormGeneral.value.meta_title" matSuffix mat-icon-button aria-label="Clear" (click)="catgrFormGeneral.value.meta_title='';clearInput('meta_title')">
+  <mat-icon>close</mat-icon>
+  </button>
+  <mat-error *ngIf="catgrFormGeneral.invalid">
+  You must enter a value</mat-error>
+  </mat-form-field>
+  <mat-form-field class="form-field">
+  <textarea matInput placeholder="Meta Tag Description" formControlName="meta_description" id="meta_description"></textarea>
+  <button mat-button *ngIf="catgrFormGeneral.value.meta_description" matSuffix mat-icon-button aria-label="Clear" (click)="catgrFormGeneral.value.meta_description='';clearInput('meta_description')">
+  <mat-icon>close</mat-icon>
+  </button>
+  </mat-form-field>
+  <mat-form-field class="form-field">
+  <textarea matInput placeholder="Meta Tag Keywords" formControlName="meta_keyword" id="meta_keyword"></textarea>
+  <button mat-button *ngIf="catgrFormGeneral.value.meta_keyword" matSuffix mat-icon-button aria-label="Clear" (click)="catgrFormGeneral.value.meta_keyword='';clearInput('meta_keyword')">
+  <mat-icon>close</mat-icon>
+  </button>
+  </mat-form-field>
+  </form>
+  </div>
+  
+  <!-- Data Inputs Tab -->
+  <div class="Data" [hidden]="showGeneral">
+    <form [formGroup]="catgrFormData" novalidate>
+    <mat-form-field class="form-field">
+  <input matInput type="text" placeholder="Parent" formControlName="parent" id="parent"/>
+  <button mat-button *ngIf="catgrFormData.value.parent" matSuffix mat-icon-button aria-label="Clear" (click)="catgrFormData.value.parent='';clearInput('parent')">
+  <mat-icon>close</mat-icon>
+  </button>
+  </mat-form-field>
+  <div class="mat-form-field">
+    <input type="file" class="catgr_data_file" id="catgr_data_file"/>
+  </div>
+  <mat-form-field>
+    <mat-select placeholder="Status" disableRipple formControlName="status">
+      <mat-option value="1">Enabled</mat-option>
+      <mat-option value="0">Disabled</mat-option>
+    </mat-select>
+  </mat-form-field>
+  </form>
+  </div>
+  </div>
+         </mat-card-content>
+    </mat-card>
+  
+  </div>
+  </div>
+  

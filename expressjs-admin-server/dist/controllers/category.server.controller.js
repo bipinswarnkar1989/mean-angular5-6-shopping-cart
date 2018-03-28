@@ -51,7 +51,7 @@ var categoryController = /** @class */ (function () {
                 }
             });
         };
-        this.fetchCategory = function (req, res) {
+        this.fetchCategories = function (req, res) {
             console.log('fetchCategory: ' + JSON.stringify(req.params));
             if (req.params.page && req.params.limit) {
                 var page = parseInt(req.params.page);
@@ -90,7 +90,10 @@ var categoryController = /** @class */ (function () {
         this.editCategory = function (req, res) {
             console.log('editCategory: ' + JSON.stringify(req.body));
             if (req.body) {
-                var id = req.body._id;
+                var id = req.body.id;
+                if (req.file) {
+                    req.body.image = req.file.path;
+                }
                 category_server_model_1.default.findByIdAndUpdate(id, { $set: req.body }, { 'new': true })
                     .exec(function (err, catgr) {
                     if (err) {

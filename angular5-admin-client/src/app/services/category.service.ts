@@ -32,4 +32,16 @@ export class CategoryService {
       headers:this.httpHeaders.set('authorization', this.token)
     })
   }
+
+  getCategory(id):Observable<Category[]>{
+    return this.http.get<Category[]>(`${this.apiUrl}/category/${id}`,{
+      headers:this.httpHeaders.set('authorization',this.token)
+    })
+  }
+
+  editCategory(c):Observable<any>{
+    return this.http.put<any>(`${this.apiUrl}/category`, c, {
+      headers:this.httpHeaders.set('authorization', this.token)
+    })
+  }
 }

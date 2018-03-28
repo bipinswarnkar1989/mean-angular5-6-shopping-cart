@@ -52,7 +52,7 @@ export default class categoryController{
     });
   }
 
-  fetchCategory = (req,res) => {
+  fetchCategories = (req,res) => {
     console.log('fetchCategory: '+ JSON.stringify(req.params));
     if(req.params.page && req.params.limit){
       let page = parseInt(req.params.page);
@@ -93,7 +93,10 @@ export default class categoryController{
   editCategory = (req,res) => {
     console.log('editCategory: '+ JSON.stringify(req.body));
     if(req.body){
-      let id = req.body._id;
+      let id = req.body.id;
+      if(req.file){
+        req.body.image = req.file.path;
+      }
       Category.findByIdAndUpdate(id, { $set: req.body }, { 'new':true })
               .exec((err,catgr) => {
                 if(err){
@@ -145,4 +148,5 @@ export default class categoryController{
       })
     }
   }
+
 }
