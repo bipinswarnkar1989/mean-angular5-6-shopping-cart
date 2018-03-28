@@ -100,12 +100,14 @@ export class CategoriesComponent implements OnInit {
 
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog result: ${JSON.stringify(result)}`);
-    this.categories = this.categories.map((m) => {
-      if (m._id === result._id) {
-         return { ...m, ...result};
-      }
-      return m;
-    });
+    if (result) {
+      this.categories = this.categories.map((m) => {
+        if (m._id === result._id) {
+           return { ...m, ...result};
+        }
+        return m;
+      });
+    }
     console.log(this.categories);
     this.dataSource = new MatTableDataSource<Category>(this.categories);
   });

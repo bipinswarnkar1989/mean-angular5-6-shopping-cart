@@ -109,12 +109,14 @@ openEditDialog(mftr) {
 
   dialogRef.afterClosed().subscribe(result => {
     console.log(`Dialog result: ${JSON.stringify(result)}`);
-    this.manufacturers = this.manufacturers.map((m) => {
-      if (m._id === result._id) {
-         return { ...m, ...result};
-      }
-      return m;
-    });
+    if (result) {
+      this.manufacturers = this.manufacturers.map((m) => {
+        if (m._id === result._id) {
+           return { ...m, ...result};
+        }
+        return m;
+      });
+    }
     console.log(this.manufacturers);
     this.dataSource = new MatTableDataSource<Manufacturer>(this.manufacturers);
   });
