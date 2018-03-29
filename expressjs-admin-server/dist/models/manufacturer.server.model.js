@@ -15,6 +15,6 @@ var manufacturerSchema = new Schema({
         default: Date.now
     }
 });
-var Manufacturer = mongoose.model('Manufacturers', manufacturerSchema);
+var Manufacturer = mongoose.model('Manufacturer', manufacturerSchema);
 exports.default = Manufacturer;
 //# sourceMappingURL=manufacturer.server.model.js.map

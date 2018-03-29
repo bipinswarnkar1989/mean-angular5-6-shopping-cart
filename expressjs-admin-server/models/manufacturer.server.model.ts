@@ -15,5 +15,5 @@ const manufacturerSchema = new Schema({
     }
 });
 
-const Manufacturer = mongoose.model('Manufacturers', manufacturerSchema);
+const Manufacturer = mongoose.model('Manufacturer', manufacturerSchema);
 export default Manufacturer;
