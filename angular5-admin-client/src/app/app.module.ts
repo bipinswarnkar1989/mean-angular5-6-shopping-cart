@@ -50,6 +50,7 @@ import { ManufacturersComponent } from './manufacturers/manufacturers.component'
 import { AddmanufacturerComponent } from './addmanufacturer/addmanufacturer.component';
 import { EditmanufacturerComponent } from './editmanufacturer/editmanufacturer.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { ProductsComponent } from './products/products.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { EditCategoryComponent } from './edit-category/edit-category.component';
     ManufacturersComponent,
     AddmanufacturerComponent,
     EditmanufacturerComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

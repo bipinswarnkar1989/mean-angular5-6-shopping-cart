@@ -9,7 +9,8 @@ import { CategoriesComponent } from '../categories/categories.component';
 import { AddcategoryComponent } from '../addcategory/addcategory.component';
 import { ManufacturersComponent } from '../manufacturers/manufacturers.component';
 import { AddmanufacturerComponent } from '../addmanufacturer/addmanufacturer.component';
-import { EditCategoryComponent } from '../edit-category/edit-category.component'
+import { EditCategoryComponent } from '../edit-category/edit-category.component';
+import { ProductsComponent } from '../products/products.component';
 
 const appRoutes:Routes = [
   { path:'', redirectTo:'/login', pathMatch:'full' },
@@ -20,6 +21,7 @@ const appRoutes:Routes = [
   { path: 'manufacturers/:page/:limit', component:ManufacturersComponent },
   { path: 'manufacturer/add', component:AddmanufacturerComponent },
   { path: 'category/edit/:id', component:EditCategoryComponent },
+  { path: 'products/:page/:limit', component:ProductsComponent }
 ]
 
 @NgModule({
