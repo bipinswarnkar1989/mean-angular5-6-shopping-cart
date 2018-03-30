@@ -12,6 +12,7 @@ import * as mongoose from 'mongoose';
 import setUserRoutes from './routes/user.server.route';
 import setCategoryRoutes from './routes/category.server.route';
 import setmanufacturerRoutes from './routes/manufacturer.server.route';
+import setProductRoutes from './routes/product.server.route';
 const app = express();
 dotenv.load({ path: '.env' });
 
@@ -46,7 +47,8 @@ mongodb
   setUserRoutes(app);
   setCategoryRoutes(app);
   setmanufacturerRoutes(app);
-
+  setProductRoutes(app);
+  
   app.get('/', (req,res) => {
     return res.end('Api working');
   })
