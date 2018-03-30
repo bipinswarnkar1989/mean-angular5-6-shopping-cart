@@ -29,6 +29,10 @@ const productSchema = new Schema({
     image:{
         type:String
     },
+    additional_images:{
+        type:Schema.ObjectId,
+        ref:'ProductImage'
+    },
     model:{
         type:String
     },
@@ -54,15 +58,20 @@ const productSchema = new Schema({
         type:String
     },
     quantity:{
-        type:String
+        type:String,
+        required:true
     },
     stock_status:{
-        type:Schema.ObjectId,
-        ref:'Stock'
+        type:String,
+        required:true
     },
     manufacturer:{
         type:Schema.ObjectId,
         ref:'Manufacturer'
+    },
+    category:{
+        type:Schema.ObjectId,
+        ref:'Category'
     },
     shipping:{
         type:Boolean
