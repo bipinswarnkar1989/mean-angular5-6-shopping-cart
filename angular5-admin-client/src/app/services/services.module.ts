@@ -6,6 +6,7 @@ import { LoggedInGuardService } from './logged-in-guard.service';
 import { CategoryService } from './category.service';
 import { SharedService } from './shared.service';
 import { ManufacturerService } from './manufacturer.service';
+import { ProductService } from './product.service';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ManufacturerService } from './manufacturer.service';
     LoggedInGuardService,
     CategoryService,
     SharedService,
-    ManufacturerService
+    ManufacturerService,
+    ProductService
   ],
   declarations: []
 })
