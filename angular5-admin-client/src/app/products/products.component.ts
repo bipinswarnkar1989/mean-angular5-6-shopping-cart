@@ -41,6 +41,10 @@ export class ProductsComponent implements OnInit {
                        )
   }
 
+  showEditAlert(p){
+    
+  }
+
   /** Whether the number of selected elements matches the total number of rows. */
  isAllSelected() {
   const numSelected = this.selection.selected.length;
