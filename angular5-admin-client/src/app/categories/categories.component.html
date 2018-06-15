@@ -78,6 +78,16 @@
       </mat-cell>
     </ng-container>
 
+     <!-- Edit COlumn -->
+     <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+      <mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
+        <button (click)="askDeleteCategory(element._id)" color="warn"  mat-icon-button>
+            <mat-icon>delete</mat-icon> 
+        </button>
+      </mat-cell>
+    </ng-container>
+
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"

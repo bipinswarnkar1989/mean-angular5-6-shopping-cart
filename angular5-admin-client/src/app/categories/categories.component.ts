@@ -11,6 +11,7 @@ import 'rxjs/add/operator/do';
 
 import { Category } from '../models/category.model';
 import { CategoryService } from '../services/category.service';
+import { SharedService } from '../services/shared.service';
 
 @Component({
   selector: 'app-categories',
@@ -20,7 +21,7 @@ import { CategoryService } from '../services/category.service';
 export class CategoriesComponent implements OnInit {
   Category = new Category();
   categories:Category[] = [];
-  displayedColumns = ['select', 'id', 'name', 'edit'];
+  displayedColumns = ['select', 'id', 'name', 'edit','delete'];
   dataSource = new MatTableDataSource<Category>(this.categories);
   selection = new SelectionModel<Category>(true, []);
   searchCatgrField:FormControl;
@@ -29,7 +30,8 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private auth:AuthService,
     private ctgrService:CategoryService,
-    private route:ActivatedRoute
+    private route:ActivatedRoute,
+    private shared:SharedService,
   ) { }
 
   ngOnInit() {
@@ -54,6 +56,18 @@ export class CategoriesComponent implements OnInit {
         },
         error => console.log(error)
       );
+  }
+
+  askDeleteCategory(id){
+     
+  }
+
+  deleteCategory(id){
+    this.ctgrService.deleteCategory(id).subscribe(
+      data => {
+
+      }
+    )
   }
 
   getCategory(params){
