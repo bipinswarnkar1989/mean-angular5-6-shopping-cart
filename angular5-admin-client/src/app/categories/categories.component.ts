@@ -27,6 +27,8 @@ export class CategoriesComponent implements OnInit {
   searchCatgrField:FormControl;
   loading:boolean = false;
   routeParams = this.route.params['_value'];
+  showDeleteAlert:boolean = false;
+  catgrToDelete:string = '';
   constructor(
     private auth:AuthService,
     private ctgrService:CategoryService,
@@ -58,14 +60,21 @@ export class CategoriesComponent implements OnInit {
       );
   }
 
-  askDeleteCategory(id){
-     
+  askDeleteCategory(c){
+     this.showDeleteAlert = true;
+     this.catgrToDelete = c.name;
   }
 
-  deleteCategory(id){
+
+  closeAskDeleteAlert(){
+    this.showDeleteAlert = false;
+  }
+
+  deleteCategory(c){
+    let id = c._id;
     this.ctgrService.deleteCategory(id).subscribe(
       data => {
-
+          
       }
     )
   }

@@ -7,6 +7,12 @@ html, body {
   height: 100%;
 }
 
+.mat-sidenav-content,
+.mat-sidenav-container,
+.mat-drawer-content {
+    position: static !important;
+}
+
 .mat-sidenav-container {
     min-height: 100%;
     max-width: 100%;

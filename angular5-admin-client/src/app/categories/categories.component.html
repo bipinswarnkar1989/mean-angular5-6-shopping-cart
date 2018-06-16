@@ -82,7 +82,7 @@
      <ng-container matColumnDef="delete">
       <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
       <mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
-        <button (click)="askDeleteCategory(element._id)" color="warn"  mat-icon-button>
+        <button (click)="askDeleteCategory(element)" color="warn"  mat-icon-button>
             <mat-icon>delete</mat-icon> 
         </button>
       </mat-cell>
@@ -97,5 +97,29 @@
 </div>
 
 
+</div>
+
+<div>
+  <!-- Delete Confirm Alert  -->
+<div *ngIf="showDeleteAlert" id="alertContainer" class="alertContainer">
+
+  <!-- Modal content -->
+  <div class="alertContent">
+    <div class="alertHeader">
+      <span (click)="closeAskDeleteAlert()" class="close">&times;</span>
+      <h3>Confirm deleting category</h3>
+    </div>
+    <div class="alertBody">
+      <p>Are you sure want to delete category <b>{{catgrToDelete}}</b>?</p>
+    </div>
+    <div class="alertFooter">
+     <div class="alertButtons">
+      <button (click)="deleteCategory(catgrToDelete)" mat-raised-button color="primary">Yes</button>
+      <button mat-raised-button color="primary">No</button>
+     </div>
+    </div>
+  </div>
+
+</div>
 </div>
 </div>
