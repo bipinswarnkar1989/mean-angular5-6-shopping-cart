@@ -110,12 +110,12 @@
       <h3>Confirm deleting category</h3>
     </div>
     <div class="alertBody">
-      <p>Are you sure want to delete category <b>{{catgrToDelete}}</b>?</p>
+      <p>Are you sure want to delete category <b>{{catgrToDelete.name}}</b>?</p>
     </div>
     <div class="alertFooter">
      <div class="alertButtons">
       <button (click)="deleteCategory(catgrToDelete)" mat-raised-button color="primary">Yes</button>
-      <button mat-raised-button color="primary">No</button>
+      <button (click)="closeAskDeleteAlert()" mat-raised-button color="primary">No</button>
      </div>
     </div>
   </div>

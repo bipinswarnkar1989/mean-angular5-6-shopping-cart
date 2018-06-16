@@ -28,7 +28,7 @@ export class CategoriesComponent implements OnInit {
   loading:boolean = false;
   routeParams = this.route.params['_value'];
   showDeleteAlert:boolean = false;
-  catgrToDelete:string = '';
+  catgrToDelete:{} ;
   constructor(
     private auth:AuthService,
     private ctgrService:CategoryService,
@@ -62,7 +62,7 @@ export class CategoriesComponent implements OnInit {
 
   askDeleteCategory(c){
      this.showDeleteAlert = true;
-     this.catgrToDelete = c.name;
+     this.catgrToDelete = c;
   }
 
 
@@ -73,8 +73,16 @@ export class CategoriesComponent implements OnInit {
   deleteCategory(c){
     let id = c._id;
     this.ctgrService.deleteCategory(id).subscribe(
-      data => {
-          
+      resp => {
+        this.showDeleteAlert = false;
+        this.shared.isLoading = false;
+        if(resp.success){
+          this.categories = this.categories.filter(c => c._id !== resp.catgr._id);
+          this.dataSource = new MatTableDataSource<Category>(this.categories);
+          this.shared.openSnackBar(resp.message, 'Ok');
+        }else if(!resp.success && resp.message){
+           this.shared.openSnackBar(resp.message, 'Ok');
+        } 
       }
     )
   }
