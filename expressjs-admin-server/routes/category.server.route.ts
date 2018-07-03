@@ -18,6 +18,8 @@ const setCategoryRoutes = (app) => {
   router.route('/category/:id')
       .get(categoryCtrl.getCategory)
       .delete(categoryCtrl.deleteCategory);
+  router.route('/category/:ids')
+      .delete(categoryCtrl.deleteMultiple);
 
   app.use('/api/category', router);
 }

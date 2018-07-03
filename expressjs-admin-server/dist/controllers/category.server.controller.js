@@ -143,6 +143,20 @@ var categoryController = /** @class */ (function () {
                 });
             }
         };
+        this.deleteMultiple = function (req, res) {
+            console.log('deleteMultipleCategory: ' + JSON.stringify(req.params));
+            if (req.params.ids) {
+                var ids = req.params.ids;
+                category_server_model_1.default.remove({ _id: { $in: ids } }, function (err, resp) {
+                    if (err) {
+                        return res.json({ success: false, message: 'Something going wrong', err: err });
+                    }
+                    else {
+                        return res.json({ success: true, message: 'Category Deleted Successfully', resp: resp });
+                    }
+                });
+            }
+        };
     }
     return categoryController;
 }());

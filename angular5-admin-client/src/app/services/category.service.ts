@@ -50,4 +50,10 @@ export class CategoryService {
       headers:this.httpHeaders.set('authorization', this.token)
     })
   }
+
+  deleteMultiple(ids):Observable<any>{
+    return this.http.delete<any>(`${this.apiUrl}/category/${ids}`,{
+      headers:this.httpHeaders.set('authorization', this.token)
+    })
+  }
 }

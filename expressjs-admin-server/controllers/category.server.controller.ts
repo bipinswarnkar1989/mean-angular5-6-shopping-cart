@@ -149,4 +149,19 @@ export default class categoryController{
     }
   }
 
+  deleteMultiple = (req,res) => {
+    console.log('deleteMultipleCategory: '+ JSON.stringify(req.params));
+     if(req.params.ids){
+       let ids = req.params.ids;
+       Category.remove({ _id:{ $in:ids }}, (err,resp) => {
+         if(err){
+           return res.json({success:false,message:'Something going wrong',err});
+         }
+         else{
+           return res.json({success:true,message:'Category Deleted Successfully',resp});
+         }
+       })
+     }
+  }
+
 }

@@ -71,6 +71,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   deleteCategory(c){
+    this.shared.isLoading = true;
     let id = c._id;
     this.ctgrService.deleteCategory(id).subscribe(
       resp => {
@@ -83,8 +84,18 @@ export class CategoriesComponent implements OnInit {
         }else if(!resp.success && resp.message){
            this.shared.openSnackBar(resp.message, 'Ok');
         } 
+      },
+      error => {
+        alert(error.message);
       }
     )
+  }
+
+  deleteMultiple(){
+    this.shared.isLoading = true;
+    let selectedIds = this.selection.selected.map(c => c._id); 
+    alert(JSON.stringify(selectedIds));
+
   }
 
   getCategory(params){
