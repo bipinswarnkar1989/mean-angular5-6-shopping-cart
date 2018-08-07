@@ -59,4 +59,29 @@ export default class productController {
                    })
         }
     }
+    updateProduct = (req,res,next) => {
+        console.log('updateProduct: '+ JSON.stringify(req.body));
+        let id = req.body._id;
+        if (req.body && id) {
+            Product.findByIdAndUpdate(id, req.body, { new:true }, (err,product) => {
+                if (err) {
+                    console.log('Error: '+ JSON.stringify(err));
+                    return res.json({
+                        success:false,
+                        message:'Some Error',
+                        err
+                    })
+                }else{
+                    if (product) {
+                        console.log('ProductUpdated: '+ JSON.stringify(product));
+                        return res.json({
+                            success:true,
+                            message:'Products Updated Successfully',
+                            product
+                        })
+                    }
+                 }
+            })
+        }
+    }
 };

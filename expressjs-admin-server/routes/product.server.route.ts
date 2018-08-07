@@ -6,7 +6,8 @@ const setProductRoutes = (app) => {
     const productCtrl = new productController();
 
     router.route('/')
-           .post(productCtrl.addProduct);
+           .post(productCtrl.addProduct)
+           .put(productCtrl.updateProduct);
     router.route('/:page/:limit')
            .get(productCtrl.getProducts);
     

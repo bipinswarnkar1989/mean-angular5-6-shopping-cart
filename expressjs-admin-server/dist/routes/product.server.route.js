@@ -6,7 +6,8 @@ var setProductRoutes = function (app) {
     var router = express.Router();
     var productCtrl = new product_server_controller_1.default();
     router.route('/')
-        .post(productCtrl.addProduct);
+        .post(productCtrl.addProduct)
+        .put(productCtrl.updateProduct);
     router.route('/:page/:limit')
         .get(productCtrl.getProducts);
     app.use('/api/product', router);

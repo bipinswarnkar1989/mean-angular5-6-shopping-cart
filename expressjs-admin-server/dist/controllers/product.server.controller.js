@@ -61,6 +61,32 @@ var productController = /** @class */ (function () {
                 });
             }
         };
+        this.updateProduct = function (req, res, next) {
+            console.log('updateProduct: ' + JSON.stringify(req.body));
+            var id = req.body._id;
+            if (req.body && id) {
+                product_server_model_1.default.findByIdAndUpdate(id, req.body, { new: true }, function (err, product) {
+                    if (err) {
+                        console.log('Error: ' + JSON.stringify(err));
+                        return res.json({
+                            success: false,
+                            message: 'Some Error',
+                            err: err
+                        });
+                    }
+                    else {
+                        if (product) {
+                            console.log('ProductUpdated: ' + JSON.stringify(product));
+                            return res.json({
+                                success: true,
+                                message: 'Products Updated Successfully',
+                                product: product
+                            });
+                        }
+                    }
+                });
+            }
+        };
     }
     return productController;
 }());
