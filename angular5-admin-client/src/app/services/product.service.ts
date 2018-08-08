@@ -23,4 +23,10 @@ export class ProductService {
     });
   }
 
+  updateProduct(p){
+    return this.http.put(`${this.apiUrl}`, p, {
+      headers:this.httpHeaders.set('authorization', this.token)
+    });
+  }
+
 }

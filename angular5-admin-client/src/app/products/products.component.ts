@@ -18,6 +18,7 @@ export class ProductsComponent implements OnInit {
   dataSource = new MatTableDataSource<Product>(this.products);
   showDeleteConfirm:Boolean = false;
   productToDel:Product;
+  productToEdit:Product;
 
   constructor(
     private productService:ProductService,
@@ -67,6 +68,31 @@ export class ProductsComponent implements OnInit {
                               this.products = this.products.filter((p) => p['_id'] !== deletedProduct._id);
                             this.dataSource = new MatTableDataSource<Product>(this.products);
                             this.showDeleteConfirm = false;
+                             }
+                           },
+                           error => {
+                            console.log(error);
+                          }
+                         )
+    }
+  }
+
+  updateProduct(){
+    if (this.productToEdit) {
+      this.productService.updateProduct(this.productToEdit)
+                         .subscribe(
+                           resp => {
+                             console.log(resp);
+                             if(resp['success']){
+                              let editedProduct = resp['product'];
+                              this.products = this.products.map((p) => {
+                                if(p['_id'] !== editedProduct._id){
+                                  return { ...p, editedProduct };
+                                }
+                                return p;
+                              });
+                            this.dataSource = new MatTableDataSource<Product>(this.products);
+                             
                              }
                            },
                            error => {
