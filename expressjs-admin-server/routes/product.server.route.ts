@@ -8,6 +8,8 @@ const setProductRoutes = (app) => {
     router.route('/')
            .post(productCtrl.addProduct)
            .put(productCtrl.updateProduct);
+    router.route('/:id')
+          .delete(productCtrl.deleteProduct);
     router.route('/:page/:limit')
            .get(productCtrl.getProducts);
     

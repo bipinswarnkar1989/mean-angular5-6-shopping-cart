@@ -87,6 +87,32 @@ var productController = /** @class */ (function () {
                 });
             }
         };
+        this.deleteProduct = function (req, res, next) {
+            console.log('deleteProduct: ' + JSON.stringify(req.params));
+            var id = req.params.id;
+            if (id) {
+                product_server_model_1.default.findByIdAndRemove(id, function (err, product) {
+                    if (err) {
+                        console.log('Error: ' + JSON.stringify(err));
+                        return res.json({
+                            success: false,
+                            message: 'Some Error',
+                            err: err
+                        });
+                    }
+                    else {
+                        if (product) {
+                            console.log('ProductRemoved: ' + JSON.stringify(product));
+                            return res.json({
+                                success: true,
+                                message: 'Products Deleted Successfully',
+                                product: product
+                            });
+                        }
+                    }
+                });
+            }
+        };
     }
     return productController;
 }());

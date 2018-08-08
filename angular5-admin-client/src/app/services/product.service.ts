@@ -17,4 +17,10 @@ export class ProductService {
     })
   }
 
+  deleteProduct(p){
+    return this.http.delete(`${this.apiUrl}/${p._id}`, {
+      headers:this.httpHeaders.set('authorization', this.token)
+    });
+  }
+
 }

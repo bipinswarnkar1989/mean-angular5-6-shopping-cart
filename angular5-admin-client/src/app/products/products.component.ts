@@ -16,6 +16,8 @@ export class ProductsComponent implements OnInit {
   products: Product[];
   selection = new SelectionModel<Product>(true, []);
   dataSource = new MatTableDataSource<Product>(this.products);
+  showDeleteConfirm:Boolean = false;
+  productToDel:Product;
 
   constructor(
     private productService:ProductService,
@@ -43,6 +45,35 @@ export class ProductsComponent implements OnInit {
 
   showEditAlert(p){
     
+  }
+  
+  showDeleteAlert(p){
+    this.showDeleteConfirm = true;
+    this.productToDel = p;
+  }
+
+  cancelDelete(){
+    this.showDeleteConfirm = false;
+  }
+
+  confirmDelete(){
+    if (this.productToDel) {
+      this.productService.deleteProduct(this.productToDel)
+                         .subscribe(
+                           resp => {
+                             console.log(resp);
+                             if(resp['success']){
+                              let deletedProduct = resp['product'];
+                              this.products = this.products.filter((p) => p['_id'] !== deletedProduct._id);
+                            this.dataSource = new MatTableDataSource<Product>(this.products);
+                            this.showDeleteConfirm = false;
+                             }
+                           },
+                           error => {
+                            console.log(error);
+                          }
+                         )
+    }
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

@@ -45,7 +45,7 @@
       <ng-container matColumnDef="delete">
         <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
         <mat-cell *matCellDef="let element"> 
-          <button (click)="showEditAlert(element)" color="warn"  mat-icon-button>
+          <button (click)="showDeleteAlert(element)" color="warn"  mat-icon-button>
             <mat-icon>delete</mat-icon> 
         </button>
         </mat-cell>
@@ -57,4 +57,17 @@
   </div>
   
 </mat-card>
+<div *ngIf="showDeleteConfirm" class="deleteModelOuter">
+    <div class="deleteModel">
+        <div class="deleteModelContent">
+          <h4>Are you sure want to delete?</h4>
+          <button (click)="confirmDelete()" mat-raised-button color="primary">
+            Yes
+        </button>
+        <button (click)="cancelDelete()" mat-raised-button color="primary">
+            No
+        </button>
+        </div>
+      </div>
+</div>
 </div>

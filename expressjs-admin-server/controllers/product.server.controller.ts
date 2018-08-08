@@ -84,4 +84,29 @@ export default class productController {
             })
         }
     }
+    deleteProduct = (req,res,next) => {
+        console.log('deleteProduct: '+ JSON.stringify(req.params));
+        let id = req.params.id;
+        if (id) {
+            Product.findByIdAndRemove(id, (err,product) => {
+                if (err) {
+                    console.log('Error: '+ JSON.stringify(err));
+                    return res.json({
+                        success:false,
+                        message:'Some Error',
+                        err
+                    })
+                }else{
+                    if (product) {
+                        console.log('ProductRemoved: '+ JSON.stringify(product));
+                        return res.json({
+                            success:true,
+                            message:'Products Deleted Successfully',
+                            product
+                        })
+                    }
+                 }
+            })
+        }
+    }
 };
